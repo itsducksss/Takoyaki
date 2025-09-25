@@ -6,7 +6,7 @@ public class CopyMotion : MonoBehaviour
 {
     public Transform targetLimb;
     public bool mirror;
-    public bool inverse;
+    //public bool inverse;
     ConfigurableJoint cj;
     Quaternion startRot;
 
@@ -19,14 +19,14 @@ public class CopyMotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!inverse)
-        { 
-            cj.targetRotation = targetLimb.localRotation * startRot;
-        } 
-        else
-        { 
-            cj.targetRotation = Quaternion.Inverse(targetLimb.localRotation) * startRot; 
-        }
+        //if (!inverse)
+        //{ 
+        //    cj.targetRotation = targetLimb.localRotation * startRot;
+        //} 
+        //else
+        //{ 
+        //    cj.targetRotation = Quaternion.Inverse(targetLimb.localRotation) * startRot; 
+        //}
 
         if (!mirror)
         {
