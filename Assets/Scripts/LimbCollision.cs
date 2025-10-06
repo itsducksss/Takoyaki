@@ -9,7 +9,7 @@ public class LimbCollision : MonoBehaviour
 
     private void Start()
     {
-        playerController = GameObject.FindObjectOfType<PlayerController>().GetComponent<PlayerController>();
+        playerController = GameObject.FindFirstObjectByType<PlayerController>().GetComponent<PlayerController>();
     }
 
     private void OnCollisionEnter(Collision collision)
