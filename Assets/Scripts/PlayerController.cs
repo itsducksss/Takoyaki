@@ -78,6 +78,10 @@ public class PlayerController : MonoBehaviour
             hips.AddForce(new Vector3(0, jumpForce, 0));
             isGrounded = false;
         }
+        else
+        { 
+            isGrounded= true;
+        }
     }
 
 }
