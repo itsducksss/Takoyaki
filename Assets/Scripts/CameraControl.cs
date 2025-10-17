@@ -1,25 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraControl : MonoBehaviour
 {
-    public float rotationSpeed = 1.0f;
-    public Transform root;
+    //public float rotationSpeed = 1.0f;
+    //public Transform root;
+    public float deltaRotation;
+    private Rigidbody rb;
 
-    float mouseX, mouseY;
+    //float mouseX, mouseY;
 
-    public float stomachOffset;
+    //public float stomachOffset;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        deltaRotation += Input.GetAxis("Mouse X");
+        //Input.GetAxis("Mouse Y")
+
+        rb.MoveRotation(Quaternion.Euler(0, deltaRotation, 0));
     }
 }
