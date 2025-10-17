@@ -10229,8 +10229,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.1743289
+  m_Center: {x: 0, y: -0.17432898, z: 0}
 --- !u!23 &698376231
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26201,8 +26201,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.1369728
+  m_Center: {x: 0, y: -0.13697281, z: 0}
 --- !u!23 &1987295070
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33274,8 +33274,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.1626636
+  m_Center: {x: 0, y: -0.16266361, z: 0}
 --- !u!1 &3850966471055908769
 GameObject:
   m_ObjectHideFlags: 0
@@ -41958,8 +41958,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.264986
+  m_Center: {x: 0, y: 0, z: -0.2649859}
 --- !u!114 &8672441477752884271
 MonoBehaviour:
   m_ObjectHideFlags: 0
