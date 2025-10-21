@@ -37,6 +37,7 @@ public class PlayerSwitch : MonoBehaviour
             player1Active = true;
             cam.enabled = true;
             cam2.enabled = false;
+            //transform.parent = null; not working like i thought.
         }
     }
 }

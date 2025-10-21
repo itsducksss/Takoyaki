@@ -6312,6 +6312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426484545}
   - component: {fileID: 426484546}
+  - component: {fileID: 426484547}
   m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
@@ -6362,6 +6363,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &426484547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426484544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe7a8979e6b37949a3f0c2c26b2f143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaRotation: 0
 --- !u!1 &432804643
 GameObject:
   m_ObjectHideFlags: 0
@@ -37573,9 +37587,9 @@ MonoBehaviour:
   anim: {fileID: 1707500485323474596}
   speed: 150
   strafeSpeed: 100
-  jumpForce: 300
+  jumpForce: 3000
   hips: {fileID: 5054856532224112757}
-  isGrounded: 0
+  isGrounded: 1
   offset: {x: 0, y: 0, z: 0}
 --- !u!4 &6224764412531909383
 Transform:
@@ -38418,7 +38432,6 @@ GameObject:
   - component: {fileID: 6213472144715289469}
   - component: {fileID: 9088277006174168312}
   - component: {fileID: 9088277006174168313}
-  - component: {fileID: 9088277006174168314}
   m_Layer: 6
   m_Name: Hips
   m_TagString: Untagged
@@ -42571,19 +42584,6 @@ MonoBehaviour:
   cam: {fileID: 963194227}
   cam2: {fileID: 1285746020}
   player1Active: 1
---- !u!114 &9088277006174168314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6729047606148806867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe7a8979e6b37949a3f0c2c26b2f143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deltaRotation: 0
 --- !u!1 &9140643151477980551
 GameObject:
   m_ObjectHideFlags: 0

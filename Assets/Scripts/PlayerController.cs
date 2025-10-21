@@ -73,12 +73,12 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isSideRight", false);
         }
 
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             hips.AddForce(new Vector3(0, jumpForce, 0));
             isGrounded = false;
         }
-        else
+        else 
         { 
             isGrounded= true;
         }
