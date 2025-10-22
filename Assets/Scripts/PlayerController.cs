@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -12,7 +10,12 @@ public class PlayerController : MonoBehaviour
     public Rigidbody hips;
     public bool isGrounded;
 
+    [SerializeField] float groundCheckDistance;
+
     [SerializeField] Vector3 offset;
+
+    [SerializeField] Transform _groundPoint;
+    [SerializeField] LayerMask _groundMask;
 
     void Start()
     {
@@ -76,12 +79,43 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             hips.AddForce(new Vector3(0, jumpForce, 0));
-            isGrounded = false;
+            //isGrounded = false;
         }
         else 
         { 
-            isGrounded= true;
+            //isGrounded= true;
+        }
+
+        CheckForGround();
+    }
+
+    void Update()
+    {
+
+    }
+
+    void CheckForGround()
+    {
+        //Physics.BoxCast(_groundPoint.position, Vector3.one, Vector3.forward, out RaycastHit hit, Quaternion.identity, 2f);
+        Physics.BoxCast(_groundPoint.position, Vector3.one * .5f, Vector3.down, out RaycastHit hit, Quaternion.identity, groundCheckDistance, _groundMask);
+        Collider collider = hit.collider;
+
+        if (hit.collider)
+        {
+            //Output the name of the Collider your Box hit
+            isGrounded = true;
+            Debug.Log("Hit : " + collider.name);
+        }
+        else
+        {
+            Debug.Log($"{hit}: {_groundPoint.position}");
+            isGrounded = false;
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(_groundPoint.position, Vector3.one);
+    }
 }
