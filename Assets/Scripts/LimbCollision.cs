@@ -14,6 +14,6 @@ public class LimbCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     { 
-        playerController.isGrounded = true;
+        //playerController.isGrounded = true;
     }
 }
