@@ -14,6 +14,7 @@ public class Grab : MonoBehaviour
     }
     void Update()
     {
+        return; // TODO: Remove
         if (Input.GetMouseButtonDown(isLeftorRight))
         {
             if (isLeftorRight == 0)

@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class Old_PlayerController : MonoBehaviour
 {
     public Animator anim;
     public float speed;
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody hips;
     public bool isGrounded;
+
+    public InputAction playerControls;
 
     [SerializeField] float groundCheckDistance;
 
