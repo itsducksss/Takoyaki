@@ -8,7 +8,7 @@ public class CameraControl : MonoBehaviour
     //public float rotationSpeed = 1.0f;
     //public Transform root;
     public float deltaRotation;
-    [SerializeField] private Rigidbody rb;
+    private Rigidbody rb;
 
     //float mouseX, mouseY;
 
@@ -17,11 +17,12 @@ public class CameraControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         deltaRotation += Input.GetAxis("Mouse X");
         //Input.GetAxis("Mouse Y")
