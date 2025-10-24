@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private Vector2 _moveDirection;
     [SerializeField] float _moveSpeed = 10f;
+    public Animator anim;
+
 
     [Header("Components")]
     [SerializeField] Rigidbody _hipsrb;
@@ -32,10 +34,12 @@ public class PlayerController : MonoBehaviour
         jumpAction.performed += OnJump;
         throwSelfAction.performed += OnThrowSelf;
         interactAction.performed += OnInteract;
-    }
+}
     private void OnEnable()
     {
         moveAction.performed += OnMove;
+        moveAction.canceled += OnMove;
+
         jumpAction.performed += OnJump;
         throwSelfAction.performed += OnThrowSelf;
         interactAction.performed += OnInteract;
@@ -43,9 +47,15 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         moveAction.performed -= OnMove;
+        moveAction.canceled -= OnMove;
+
         jumpAction.performed -= OnJump;
         throwSelfAction.performed -= OnThrowSelf;
         interactAction.performed -= OnInteract;
+
+        anim.SetBool("isWalk", false);
+        Debug.Log("Me no walkie");
+
     }
 
     #region Inputs
@@ -61,6 +71,9 @@ public class PlayerController : MonoBehaviour
     {
         if(context.performed) Debug.Log($"Player Moving: {_moveDirection = context.ReadValue<Vector2>()}");
         else if(context.canceled) Debug.Log($"Player Stopped Moving: {_moveDirection = Vector2.zero}");
+        anim.SetBool("isWalk", true);
+        Debug.Log("Walkkkkkkkkkkking");
+
     }
     private void OnInteract(InputAction.CallbackContext context)
     {
@@ -72,7 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         if(_moveDirection.sqrMagnitude > 0f)
         {
-            _hipsrb.linearVelocity = (_moveDirection * _moveSpeed);
+            _hipsrb.linearVelocity = new Vector3(_moveDirection.x, 0, _moveDirection.y) * _moveSpeed;
             Debug.Log($"Moving {_moveDirection}, Magnitude: {_moveDirection.sqrMagnitude}");
         }
     }
