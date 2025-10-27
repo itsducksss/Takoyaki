@@ -7,10 +7,16 @@ public class PlayerController : MonoBehaviour
     private Vector2 _moveDirection;
     [SerializeField] float _moveSpeed = 10f;
     public Animator anim;
+    public bool isGrounded;
+
+    [SerializeField] float groundCheckDistance;
+    [SerializeField] Transform _groundPoint;
+    [SerializeField] LayerMask _groundMask;
 
 
     [Header("Components")]
     [SerializeField] Rigidbody _hipsrb;
+    [SerializeField] Rigidbody _feetrb;
 
     // Inputs
     InputAction moveAction;
@@ -53,9 +59,6 @@ public class PlayerController : MonoBehaviour
         throwSelfAction.performed -= OnThrowSelf;
         interactAction.performed -= OnInteract;
 
-        anim.SetBool("isWalk", false);
-        Debug.Log("Me no walkie");
-
     }
 
     #region Inputs
@@ -65,7 +68,9 @@ public class PlayerController : MonoBehaviour
     }
     private void OnJump(InputAction.CallbackContext context)
     {
-
+        CheckForGround();
+        _feetrb.AddForce(_moveDirection * 1000f, ForceMode.Impulse);
+    //does not work rn
     }
     private void OnMove(InputAction.CallbackContext context)
     {
@@ -73,6 +78,12 @@ public class PlayerController : MonoBehaviour
         else if(context.canceled) Debug.Log($"Player Stopped Moving: {_moveDirection = Vector2.zero}");
         anim.SetBool("isWalk", true);
         Debug.Log("Walkkkkkkkkkkking");
+
+        if (context.canceled)
+        {
+            anim.SetBool("isWalk", false);
+            Debug.Log("Me no walkie");
+        }
 
     }
     private void OnInteract(InputAction.CallbackContext context)
@@ -88,5 +99,30 @@ public class PlayerController : MonoBehaviour
             _hipsrb.linearVelocity = new Vector3(_moveDirection.x, 0, _moveDirection.y) * _moveSpeed;
             Debug.Log($"Moving {_moveDirection}, Magnitude: {_moveDirection.sqrMagnitude}");
         }
+    }
+
+    void CheckForGround()
+    {
+        //Physics.BoxCast(_groundPoint.position, Vector3.one, Vector3.forward, out RaycastHit hit, Quaternion.identity, 2f);
+        Physics.BoxCast(_groundPoint.position, Vector3.one * .5f, Vector3.down, out RaycastHit hit, Quaternion.identity, groundCheckDistance, _groundMask);
+        Collider collider = hit.collider;
+
+        if (hit.collider)
+        {
+            //Output the name of the Collider your Box hit
+            isGrounded = true;
+            Debug.Log("Hit : " + collider.name);
+        }
+        else
+        {
+            Debug.Log($"{hit}: {_groundPoint.position}");
+            isGrounded = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(_groundPoint.position, Vector3.one);
     }
 }
