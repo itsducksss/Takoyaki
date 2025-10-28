@@ -6,17 +6,18 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private Vector2 _moveDirection;
     [SerializeField] float _moveSpeed = 10f;
+    [SerializeField] float _jumpHeight = 10f;
     public Animator anim;
     public bool isGrounded;
+    Vector3 velocity;
 
-    [SerializeField] float groundCheckDistance;
+    [SerializeField] float groundCheckDistance; // changes max height allowed for the character to jump
     [SerializeField] Transform _groundPoint;
     [SerializeField] LayerMask _groundMask;
 
 
     [Header("Components")]
     [SerializeField] Rigidbody _hipsrb;
-    [SerializeField] Rigidbody _feetrb;
 
     // Inputs
     InputAction moveAction;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         jumpAction.performed += OnJump;
         throwSelfAction.performed += OnThrowSelf;
         interactAction.performed += OnInteract;
+
 }
     private void OnEnable()
     {
@@ -69,8 +71,9 @@ public class PlayerController : MonoBehaviour
     private void OnJump(InputAction.CallbackContext context)
     {
         CheckForGround();
-        _feetrb.AddForce(_moveDirection * 1000f, ForceMode.Impulse);
-    //does not work rn
+        //_hipsrb.AddForce(_moveDirection * 1000f, ForceMode.Impulse);
+        //only works when moving
+
     }
     private void OnMove(InputAction.CallbackContext context)
     {
@@ -112,6 +115,10 @@ public class PlayerController : MonoBehaviour
             //Output the name of the Collider your Box hit
             isGrounded = true;
             Debug.Log("Hit : " + collider.name);
+
+            velocity.y = _jumpHeight;
+
+            _hipsrb.AddForce(velocity * 10000f *Time.deltaTime);
         }
         else
         {
