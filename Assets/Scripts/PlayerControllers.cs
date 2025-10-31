@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         throwSelfAction.performed += OnThrowSelf;
         interactAction.performed += OnInteract;
 
-}
+    }
     private void OnEnable()
     {
         moveAction.performed += OnMove;

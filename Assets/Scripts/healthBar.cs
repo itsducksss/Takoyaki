@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class healthBar : MonoBehaviour
 {
+    private static float value;
+
     public Slider healthSlider;
 
     public TMP_Text healthText;
@@ -23,5 +25,19 @@ public class healthBar : MonoBehaviour
     {
         healthText.text = health + "/" + maxHealth;
         //fix this so that it calls the function which would be to update the health itself double check
+        healthBar.value = (float)health / (float)maxHealth;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "water")
+        {
+            health = health + 25;
+        }
+
+        else
+        {
+            health = health - 25;
+        }
     }
 }

@@ -23865,7 +23865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 10
-  _jumpHeight: 50
+  _jumpHeight: 10
   anim: {fileID: 2964229749405605730}
   isGrounded: 1
   groundCheckDistance: 0.5
