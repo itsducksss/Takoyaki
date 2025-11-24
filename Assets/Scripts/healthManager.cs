@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
@@ -12,14 +11,9 @@ public class HealthManager : MonoBehaviour
     private const float coef = 0.05f;
     public Collider[] hitColliders;
     private const int maxColliders = 10;
-    private Vector3 center;
-    private float radius;
-
     public bool isWatered;
 
     public TMP_Text healthText;
-
-    [SerializeField] Transform _groundPoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -30,7 +24,7 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                if (isWatered == true)
+                if (isWatered == true)                                                                                                                                                                                                                                                                                
             {
                 healthAmount += coef * 0.5f;
                 Debug.Log("Gulp...gulp...gulp");
@@ -101,31 +95,5 @@ public void Heal(float healingAmount)
         healthAmount += healingAmount;
         healingAmount = Mathf.Clamp(healthAmount, 0, 100);
 
-    }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    //Physics.BoxCast(_groundPoint.position, Vector3.one, Vector3.forward, out RaycastHit hit, Quaternion.identity, 2f);
-    //    //Physics.BoxCast(_groundPoint.position, Vector3.one * .5f, Vector3.down, out RaycastHit hit, Quaternion.identity);
-    //    //Collider collider = hit.collider;
-
-    //    if (other.gameObject.tag == "Water")
-    //    {
-    //        healthAmount = healthAmount + 25;
-
-    //        int numColliders = Physics.OverlapSphereNonAlloc(center, radius, hitColliders);
-
-    //        // Iterate through detected colliders and send the AddDamage message.
-    //        for (int i = 0; i < numColliders; i++)
-    //        {
-    //            Debug.Log("yaaa heal yaaahh");
-    //        }
-    //    }
-
-    //}
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(_groundPoint.position, Vector3.one); //for the check for ground()
     }
 }
