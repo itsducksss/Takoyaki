@@ -59,12 +59,12 @@ public class HealthManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(25);
+            TakeDamage(25);  //will prob not need this
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Heal(25);
+            Heal(25);       //water bottle pick-up
         }
     }
 

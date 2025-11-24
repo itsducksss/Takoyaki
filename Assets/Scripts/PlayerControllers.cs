@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     {
 
     }
-    private void OnJump(InputAction.CallbackContext context)
+    private void OnJump(InputAction.CallbackContext context) //does not work right now as it should as the player jumps at avrious heights And looks like it is twitching
     {
         CheckForGround();
         //_hipsrb.AddForce(_moveDirection * 1000f, ForceMode.Impulse);
@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isWalk", false);
             Debug.Log("Me no walkie");
         }
-
     }
     private void OnInteract(InputAction.CallbackContext context)
     {
@@ -95,7 +94,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    private void FixedUpdate()
+private void FixedUpdate()
     {
         if(_moveDirection.sqrMagnitude > 0f)
         {
