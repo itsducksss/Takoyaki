@@ -1,16 +1,21 @@
 using Unity.Hierarchy;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerSwitch : MonoBehaviour
 {
-    public PlayerController playerController;   //human player movement
-    public PlayerController player2Controller; //change to octopus player movement
-    public PlayerInput playerInput;
-    public PlayerInput playerInput2;
+    [SerializeField] PlayerController playerController;   //human player movement
+    [SerializeField] PlayerController player2Controller; //change to octopus player movement
+    [SerializeField] PlayerInput playerInput;
+    [SerializeField] PlayerInput playerInput2;
     public Camera cam;  //cam of human
     public Camera cam2; //cam of octopus
     public bool player1Active = true;
+    public bool isOcto;
+    public GameObject octoPlayer;
+    public GameObject headPoint;
 
 
 
@@ -20,7 +25,25 @@ public class PlayerSwitch : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             SwitchPlayer();
-            PartHit(gameObject);
+            if (isOcto == true)
+            {
+                Debug.Log("Yar idk rn working on it");  //dis shit no worky need to get ref to the box cast of octo and human player.
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "HumanPlayer")
+        {
+            SwitchPlayer();
+            isOcto = false;
+
+        }
+        if (other.gameObject.tag == "OctoPlayer")
+        {
+            SwitchPlayer();
+            isOcto = true;
         }
     }
 
@@ -35,6 +58,7 @@ public class PlayerSwitch : MonoBehaviour
             player1Active = false;
             //cam.enabled = false;
             //cam2.enabled = true;
+            PartHit(gameObject);
         }
         else 
         {
@@ -43,6 +67,10 @@ public class PlayerSwitch : MonoBehaviour
             playerInput.enabled = true;
             playerInput2.enabled = false;
             player1Active = true;
+            octoPlayer.transform.position = headPoint.transform.position;
+            octoPlayer.transform.SetParent(headPoint.transform);
+            octoPlayer.GetComponent<Rigidbody>().isKinematic = true;
+
             //cam.enabled = true;
             //cam2.enabled = false;
             //transform.parent = null; not working like i thought.

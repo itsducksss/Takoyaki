@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
 private void FixedUpdate()
     {
-        if(_moveDirection.sqrMagnitude > 0f)
+        if(_moveDirection.sqrMagnitude > 0f)      
         {
             _hipsrb.linearVelocity = new Vector3(_moveDirection.x, 0, _moveDirection.y) * _moveSpeed;
             Debug.Log($"Moving {_moveDirection}, Magnitude: {_moveDirection.sqrMagnitude}");
