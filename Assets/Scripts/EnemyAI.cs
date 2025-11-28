@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
 
     //states
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerinAttackRange;
+    public bool playerInSightRange, playerInAttackRange;
 
     private void Awake()
     {
@@ -33,9 +33,11 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        if (!playerInSightRange && !playerinAttackRange) Patrolling();
-        if (playerInSightRange && !playerinAttackRange) ChasePlayer();
-        if (playerInSightRange && playerinAttackRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange) Patrolling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer(); //gets stuck stalking the player so does not move or attack after it gets within a certain range
+        if (playerInSightRange && playerInAttackRange) AttackPlayer(); //not currently triggering even when in range
+        
+        //player attack bool is not switching on in the inspector which means that it does not transition to attack mode
     }
 
     private void Patrolling()
@@ -50,11 +52,13 @@ public class EnemyAI : MonoBehaviour
         //walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
+        Debug.Log("walk walk walk");
     }
 
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        Debug.Log("stalking");
     }
 
     private void AttackPlayer()
@@ -74,6 +78,8 @@ public class EnemyAI : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+
+        Debug.Log("Attacking yup");
     }
 
     private void ResetAttack()
