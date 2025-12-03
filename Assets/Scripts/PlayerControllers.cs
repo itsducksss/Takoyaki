@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-private void FixedUpdate()
+    private void FixedUpdate()
     {
         if(_moveDirection.sqrMagnitude > 0f)      
         {

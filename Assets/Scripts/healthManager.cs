@@ -24,15 +24,15 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                if (isWatered == true)                                                                                                                                                                                                                                                                                
-            {
-                healthAmount += coef * 0.5f;
-                Debug.Log("Gulp...gulp...gulp");
+        if (isWatered == true)                                                                                                                                                                                                                                                                                
+        {
+            healthAmount += coef * 0.5f;
+            Debug.Log("Gulp...gulp...gulp");
 
-                if (healthAmount > 100f)
-                {
-                    healthAmount = 100f;
-                    Debug.Log("Drowwnning in so much water");
+            if (healthAmount > 100f)
+            {
+                healthAmount = 100f;
+                Debug.Log("Drowwnning in so much water");
             }
         }
         else

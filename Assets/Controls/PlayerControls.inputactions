@@ -25,9 +25,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Throw Self",
+                    "name": "Attatch",
                     "type": "Button",
-                    "id": "16cfc54c-f447-4559-9f83-eae33e167768",
+                    "id": "58623635-cc86-46e8-9c55-33249837131d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Detatch",
+                    "type": "Button",
+                    "id": "4833962d-0b1b-41d9-9c1a-259ea6c7eabb",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -79,12 +88,67 @@
                 },
                 {
                     "name": "",
-                    "id": "036c5446-493f-4980-90cb-3474e523e84f",
-                    "path": "<Keyboard>/e",
+                    "id": "421eaa90-30b5-43d7-a17e-d1b7281f1dfc",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard",
-                    "action": "Throw Self",
+                    "action": "Attatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f1e74b7-0d7b-49b3-a9f3-9cef60a16360",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Attatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e9f4046-a699-415b-9ce1-405fb54f7518",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Attatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca92c2c8-78d1-413d-9ae9-98e9837a7843",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold(duration=0.3)",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Detatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6837e84-62a0-4a1c-b7e8-222dc614a34f",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Detatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ea99eae-0557-45fd-a7c5-254d252901b0",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Detatch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -212,10 +276,21 @@
                 {
                     "name": "",
                     "id": "c7ff6fdd-5abb-4c66-8bd9-c3dc48ccbf1c",
-                    "path": "",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a72932f5-5286-49ee-9494-902cd019bb29",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -258,6 +333,11 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

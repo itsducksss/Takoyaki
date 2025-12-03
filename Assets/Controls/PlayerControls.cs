@@ -111,9 +111,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Throw Self"",
+                    ""name"": ""Attatch"",
                     ""type"": ""Button"",
-                    ""id"": ""16cfc54c-f447-4559-9f83-eae33e167768"",
+                    ""id"": ""58623635-cc86-46e8-9c55-33249837131d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Detatch"",
+                    ""type"": ""Button"",
+                    ""id"": ""4833962d-0b1b-41d9-9c1a-259ea6c7eabb"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -165,12 +174,67 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""036c5446-493f-4980-90cb-3474e523e84f"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""421eaa90-30b5-43d7-a17e-d1b7281f1dfc"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
-                    ""action"": ""Throw Self"",
+                    ""action"": ""Attatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f1e74b7-0d7b-49b3-a9f3-9cef60a16360"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Attatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e9f4046-a699-415b-9ce1-405fb54f7518"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Attatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca92c2c8-78d1-413d-9ae9-98e9837a7843"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold(duration=0.3)"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Detatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6837e84-62a0-4a1c-b7e8-222dc614a34f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Detatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ea99eae-0557-45fd-a7c5-254d252901b0"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Detatch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -298,10 +362,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c7ff6fdd-5abb-4c66-8bd9-c3dc48ccbf1c"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a72932f5-5286-49ee-9494-902cd019bb29"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -346,6 +421,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": false,
                     ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
                 }
             ]
         },
@@ -366,7 +446,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement = asset.FindActionMap("Player Movement", throwIfNotFound: true);
         m_PlayerMovement_Move = m_PlayerMovement.FindAction("Move", throwIfNotFound: true);
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerMovement_ThrowSelf = m_PlayerMovement.FindAction("Throw Self", throwIfNotFound: true);
+        m_PlayerMovement_Attatch = m_PlayerMovement.FindAction("Attatch", throwIfNotFound: true);
+        m_PlayerMovement_Detatch = m_PlayerMovement.FindAction("Detatch", throwIfNotFound: true);
         m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -454,7 +535,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
     private readonly InputAction m_PlayerMovement_Move;
     private readonly InputAction m_PlayerMovement_Jump;
-    private readonly InputAction m_PlayerMovement_ThrowSelf;
+    private readonly InputAction m_PlayerMovement_Attatch;
+    private readonly InputAction m_PlayerMovement_Detatch;
     private readonly InputAction m_PlayerMovement_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Movement".
@@ -476,9 +558,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMovement/ThrowSelf".
+        /// Provides access to the underlying input action "PlayerMovement/Attatch".
         /// </summary>
-        public InputAction @ThrowSelf => m_Wrapper.m_PlayerMovement_ThrowSelf;
+        public InputAction @Attatch => m_Wrapper.m_PlayerMovement_Attatch;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerMovement/Detatch".
+        /// </summary>
+        public InputAction @Detatch => m_Wrapper.m_PlayerMovement_Detatch;
         /// <summary>
         /// Provides access to the underlying input action "PlayerMovement/Interact".
         /// </summary>
@@ -515,9 +601,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @ThrowSelf.started += instance.OnThrowSelf;
-            @ThrowSelf.performed += instance.OnThrowSelf;
-            @ThrowSelf.canceled += instance.OnThrowSelf;
+            @Attatch.started += instance.OnAttatch;
+            @Attatch.performed += instance.OnAttatch;
+            @Attatch.canceled += instance.OnAttatch;
+            @Detatch.started += instance.OnDetatch;
+            @Detatch.performed += instance.OnDetatch;
+            @Detatch.canceled += instance.OnDetatch;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -538,9 +627,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @ThrowSelf.started -= instance.OnThrowSelf;
-            @ThrowSelf.performed -= instance.OnThrowSelf;
-            @ThrowSelf.canceled -= instance.OnThrowSelf;
+            @Attatch.started -= instance.OnAttatch;
+            @Attatch.performed -= instance.OnAttatch;
+            @Attatch.canceled -= instance.OnAttatch;
+            @Detatch.started -= instance.OnDetatch;
+            @Detatch.performed -= instance.OnDetatch;
+            @Detatch.canceled -= instance.OnDetatch;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -721,12 +813,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Throw Self" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Attatch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnThrowSelf(InputAction.CallbackContext context);
+        void OnAttatch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Detatch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDetatch(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
