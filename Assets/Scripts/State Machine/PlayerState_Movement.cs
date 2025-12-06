@@ -28,30 +28,43 @@ public class PlayerState_Movement : StateInput
     {
         base.OnFixedUpdate();
 
+        Vector3 camForward = sm.CameraLookDirection;
+        Vector3 direction = Vector3.Cross(Vector3.up, camForward);
+        Vector3 move = (camForward * sm.MoveDirection.y) + (direction * sm.MoveDirection.x);
+
+        move = move.normalized * sm.MoveSpeed;
+        sm.Rb.linearVelocity = new(move.x, sm.Rb.linearVelocity.y, move.z);
+
+        //Vector3 moveTowards = Vector3.RotateTowards(sm.transform.position, move
+        //    , Time.deltaTime * sm.CharacterRotateSpeed, Time.deltaTime);
+        //sm.Rb.MoveRotation(moveTowards);
+
+        sm.Rb.MoveRotation(Quaternion.RotateTowards(sm.transform.rotation, 
+            Camera.main.transform.rotation, sm.CharacterRotateSpeed * Time.fixedDeltaTime));
     }
 
     #region Inputs
-    public override void OnAttatch(InputAction.CallbackContext context)
+    public override void OnAttatch(InputAction context)
     {
         AttatchToHuman();
     }
 
-    public override void OnDetatch(InputAction.CallbackContext context)
+    public override void OnDetatch(InputAction context)
     {
         base.OnDetatch(context);
     }
 
-    public override void OnInteract(InputAction.CallbackContext context)
+    public override void OnInteract(InputAction context)
     {
         base.OnInteract(context);
     }
 
-    public override void OnJump(InputAction.CallbackContext context)
+    public override void OnJump(InputAction context)
     {
-        if(context.performed) Jump();
+        if(context.WasPressedThisFrame()) Jump();
     }
 
-    public override void OnMove(InputAction.CallbackContext context)
+    public override void OnMove(InputAction context)
     {
         base.OnMove(context);
     }

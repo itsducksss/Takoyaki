@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
-[RequireComponent (typeof(PlayerInput))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
-
 public class PlayerStateMachine : MonoBehaviour
 {
     #region Variables
@@ -32,21 +31,44 @@ public class PlayerStateMachine : MonoBehaviour
     public float MoveSpeed { get { return _moveSpeed; } }
     [Header("Ground Check")]
     [SerializeField] bool _isGrounded;
-    public bool IsGrounded { get { _isGrounded = GroundCheck(); return GroundCheck(); } }
+    public bool IsGrounded { get { return GroundCheck(); } }
     [SerializeField] float _groundCheckDistance = 1f;
     [SerializeField] Vector3 _groundCheckSize = Vector3.one;
     [SerializeField] LayerMask _groundMask;
 
+    [Header("Input")]
+    public Vector2 MoveDirection { get; set; }
+    [SerializeField] float _cameraRotateSpeed = 1f;
+    public float CameraRotateSpeed { get { return _cameraRotateSpeed; } }
+    [SerializeField] float _characterRotateSpeed = 5f;
+    public float CharacterRotateSpeed { get { return _characterRotateSpeed; } }
+
     [Header("Components")]
     [SerializeField] Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
+    [SerializeField] CinemachineFreeLook _followCamera;
+    public CinemachineFreeLook FollowCamera { get { return _followCamera; } }
+    public Vector3 CameraLookDirection
+    {
+        get
+        {
+            if (_followCamera != null)
+            {
+                // Get the forward direction of the camera, but ignore the Y component for horizontal movement
+                Vector3 forward = Camera.main.transform.forward;
+                forward.y = 0f;
+                return forward.normalized;
+            }
+            return Vector3.forward; // Fallback direction
+        }
+    }
+
 
     private InputAction moveAction;
     private InputAction attatchAction;
     private InputAction detatchAction;
     private InputAction interactAction;
     private InputAction jumpAction;
-
 
     #endregion
 
@@ -57,37 +79,38 @@ public class PlayerStateMachine : MonoBehaviour
         detatchAction = InputSystem.actions.FindAction("Detatch");
         interactAction = InputSystem.actions.FindAction("Interact");
         jumpAction = InputSystem.actions.FindAction("Jump");
+
+        MovementState.sm = this;
+        AttatchedState.sm = this;
+
+        Cursor.lockState = CursorLockMode.Locked; // TODO: Temp
     }
 
     #region Input
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction context)
     {
+        MoveDirection = context.ReadValue<Vector2>();
         currentState?.OnMove(context);
     }
 
-    public void OnAttatch(InputAction.CallbackContext context)
+    public void OnAttatch(InputAction context)
     {
         currentState?.OnAttatch(context);
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputAction context)
     {
         currentState?.OnJump(context);
     }
 
-    public void OnDetatch(InputAction.CallbackContext context)
+    public void OnDetatch(InputAction context)
     {
         currentState?.OnDetatch(context);
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnInteract(InputAction context)
     {
         currentState?.OnInteract(context);
-    }
-
-    void ScanInputs()
-    {
-
     }
     #endregion
 
@@ -95,11 +118,21 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         SwapState(MovementState);
+
+        _followCamera.m_XAxis.m_MaxSpeed = _followCamera.m_XAxis.m_MaxSpeed * _cameraRotateSpeed;
+        _followCamera.m_YAxis.m_MaxSpeed = _followCamera.m_YAxis.m_MaxSpeed * _cameraRotateSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        OnMove(moveAction);
+        OnAttatch(attatchAction);
+        OnDetatch(detatchAction);
+        OnInteract(interactAction);
+        OnJump(jumpAction);
+
+
         currentState?.OnUpdate();
     }
 
@@ -113,20 +146,18 @@ public class PlayerStateMachine : MonoBehaviour
         currentState?.OnExit();
         currentState = state;
         currentState.OnEnter();
+        Debug.Log($"Swapped State. Current State: {currentState}");
     }
 
     bool GroundCheck()
     {
-        Vector3 pos = transform.position + (Vector3.down * _groundCheckDistance);
 
-        Physics.BoxCast(pos, Vector3.one * .5f, Vector3.down, out RaycastHit hit, Quaternion.identity, _groundCheckDistance, _groundMask);
-        Collider collider = hit.collider;
+        bool hit = Physics.BoxCast(transform.position, _groundCheckSize * 0.5f, Vector3.down, 
+            out RaycastHit rayHit, Quaternion.identity, _groundCheckDistance, _groundMask);
 
-        Debug.Log($"{collider}");
-
-        if (collider)
+        if (hit)
         {
-            Debug.Log("Hit : " + collider.name);
+            Debug.Log("Hit : " + rayHit.collider.name);
             return true;
         }
         else

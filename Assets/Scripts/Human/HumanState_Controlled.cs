@@ -30,27 +30,27 @@ public class HumanState_Controlled : StateInput
     }
 
     #region Inputs
-    public override void OnAttatch(InputAction.CallbackContext context)
+    public override void OnAttatch(InputAction context)
     {
-        
+        base.OnAttatch(context);
     }
 
-    public override void OnDetatch(InputAction.CallbackContext context)
+    public override void OnDetatch(InputAction context)
     {
         base.OnDetatch(context);
     }
 
-    public override void OnInteract(InputAction.CallbackContext context)
+    public override void OnInteract(InputAction context)
     {
         base.OnInteract(context);
     }
 
-    public override void OnJump(InputAction.CallbackContext context)
+    public override void OnJump(InputAction context)
     {
         base.OnJump(context);
     }
 
-    public override void OnMove(InputAction.CallbackContext context)
+    public override void OnMove(InputAction context)
     {
         base.OnMove(context);
     }

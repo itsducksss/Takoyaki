@@ -279,7 +279,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Gamepad",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false

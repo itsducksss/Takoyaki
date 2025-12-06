@@ -24,7 +24,7 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isWatered == true)                                                                                                                                                                                                                                                                                
+        if (isWatered)                                                                                                                                                                                                                                                                                
         {
             healthAmount += coef * 0.5f;
             Debug.Log("Gulp...gulp...gulp");
@@ -43,7 +43,7 @@ public class HealthManager : MonoBehaviour
 
 
         //healthAmount -= coef * 0.05f; //(Change back to 0.05)
-        healthBar.value = (float)healthAmount / 100f;
+        healthBar.value = healthAmount / 100f;
 
         healthText.text = healthAmount + "/" + 100;
 
@@ -53,7 +53,7 @@ public class HealthManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(25);  //will prob not need this
+            TakeDamage(5);  //will prob not need this
         }
 
         if (Input.GetKeyDown(KeyCode.Return))

@@ -31,30 +31,30 @@ public class PlayerState_Attatched : StateInput
     }
 
     #region Inputs
-    public override void OnAttatch(InputAction.CallbackContext context)
+    public override void OnAttatch(InputAction context)
     {
         return;
     }
 
-    public override void OnDetatch(InputAction.CallbackContext context)
+    public override void OnDetatch(InputAction context)
     {
         //TODO: Detatch the player from the current human
         sm.CurrentHuman.OnDetatch(context);
 
     }
 
-    public override void OnInteract(InputAction.CallbackContext context)
+    public override void OnInteract(InputAction context)
     {
         sm.CurrentHuman.OnInteract(context);
 
     }
 
-    public override void OnJump(InputAction.CallbackContext context)
+    public override void OnJump(InputAction context)
     {
         sm.CurrentHuman.OnJump(context);
     }
 
-    public override void OnMove(InputAction.CallbackContext context)
+    public override void OnMove(InputAction context)
     {
         sm.CurrentHuman.OnInteract(context);
 
