@@ -37,7 +37,7 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("THOIUSTRY WAAAWWTER");
+            //Debug.Log("THOIUSTRY WAAAWWTER");
             healthAmount -= coef * 0.05f;
         }
 

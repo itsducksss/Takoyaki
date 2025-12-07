@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
@@ -17,6 +18,8 @@ public class PlayerStateMachine : MonoBehaviour
     public float AttatchDistance { get { return _attatchDistance; } set { _attatchDistance = value; } }
     [SerializeField] bool _isAttatched;
     public bool IsAttatched { get { return _isAttatched; } set { _isAttatched = value; } }
+    public bool CanDetatch { get; set; } = true;
+    public bool CanAttatch { get; set; } = true;
 
     [SerializeField] LayerMask _humanLayerMask;
     public LayerMask HumanLayerMask { get { return _humanLayerMask; } set { _humanLayerMask = value; } }
@@ -29,8 +32,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField] float _moveSpeed = 2.5f;
     public float MoveSpeed { get { return _moveSpeed; } }
+
     [Header("Ground Check")]
-    [SerializeField] bool _isGrounded;
     public bool IsGrounded { get { return GroundCheck(); } }
     [SerializeField] float _groundCheckDistance = 1f;
     [SerializeField] Vector3 _groundCheckSize = Vector3.one;
@@ -40,13 +43,32 @@ public class PlayerStateMachine : MonoBehaviour
     public Vector2 MoveDirection { get; set; }
     [SerializeField] float _cameraRotateSpeed = 1f;
     public float CameraRotateSpeed { get { return _cameraRotateSpeed; } }
+    [Tooltip("The speed of the player characters rotation when following the camera")]
     [SerializeField] float _characterRotateSpeed = 5f;
     public float CharacterRotateSpeed { get { return _characterRotateSpeed; } }
+
+    [Header("Attatchment")]
+
+    [Tooltip("The multiplier applied to the FreeLook camera when not attatched to a Human")]
+    [SerializeField] float _unattatchedCameraRadiusScaleMultiplier = 1f;
+    /// <summary> The multiplier applied to the FreeLook camera when not attatched to a Human </summary>
+    public float UnattatchedCameraRadiusScaleMultiplier { get { return _unattatchedCameraRadiusScaleMultiplier; } }
+
+    [Tooltip("The multiplier applied to the FreeLook camera when attatched to a Human")]
+    [SerializeField] float _attatchedCameraRadiusScaleMultiplier = 1.5f;
+    /// <summary> The multiplier applied to the FreeLook camera when attatched to a Human </summary>
+    public float AttatchedCameraRadiusScaleMultiplier { get { return _attatchedCameraRadiusScaleMultiplier; } }
+    
+    private float[] cameraRadiuses;
 
     [Header("Components")]
     [SerializeField] Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
+    [SerializeField] Collider _characterCollider;
+    public Collider CharacterCollider { get { return _characterCollider; } }
+
     [SerializeField] CinemachineFreeLook _followCamera;
+    /// <summary> The Free Look camera following the player (is also used for look input) </summary>
     public CinemachineFreeLook FollowCamera { get { return _followCamera; } }
     public Vector3 CameraLookDirection
     {
@@ -54,15 +76,13 @@ public class PlayerStateMachine : MonoBehaviour
         {
             if (_followCamera != null)
             {
-                // Get the forward direction of the camera, but ignore the Y component for horizontal movement
                 Vector3 forward = Camera.main.transform.forward;
                 forward.y = 0f;
                 return forward.normalized;
             }
-            return Vector3.forward; // Fallback direction
+            return Vector3.forward; // In case camera goes missing
         }
     }
-
 
     private InputAction moveAction;
     private InputAction attatchAction;
@@ -74,16 +94,22 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Awake()
     {
+        // Initiate the input actions
         moveAction = InputSystem.actions.FindAction("Move");
         attatchAction = InputSystem.actions.FindAction("Attatch");
         detatchAction = InputSystem.actions.FindAction("Detatch");
         interactAction = InputSystem.actions.FindAction("Interact");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        lookAction = InputSystem.actions.FindAction("Look");
 
+        // Give the player states the reference to this State Machine
         MovementState.sm = this;
         AttatchedState.sm = this;
 
-        Cursor.lockState = CursorLockMode.Locked; // TODO: Temp
+        // Lock the cursor
+        Cursor.lockState = CursorLockMode.Locked;
+
+        UpdateSensitivity(_cameraRotateSpeed);
     }
 
     #region Input
@@ -112,26 +138,41 @@ public class PlayerStateMachine : MonoBehaviour
     {
         currentState?.OnInteract(context);
     }
+
+    private InputAction lookAction;
+
+    // List of Process Overrides: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Processors.html
+    public void UpdateSensitivity(float newSensitivity = 1f) //float xSensitivity, float ySensitivity
+    {
+        _cameraRotateSpeed = newSensitivity;
+        lookAction.ApplyBindingOverride(new InputBinding { overrideProcessors = $"scale(factor={CameraRotateSpeed})" });
+    }
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if(!FollowCamera)
+            Debug.LogError("Missing the FreeLook Camera component");
+
         SwapState(MovementState);
 
-        _followCamera.m_XAxis.m_MaxSpeed = _followCamera.m_XAxis.m_MaxSpeed * _cameraRotateSpeed;
-        _followCamera.m_YAxis.m_MaxSpeed = _followCamera.m_YAxis.m_MaxSpeed * _cameraRotateSpeed;
+        CinemachineFreeLook.Orbit[] orbits = _followCamera.m_Orbits;
+
+        cameraRadiuses = new float[]
+        {
+            orbits[0].m_Radius, orbits[1].m_Radius, orbits[2].m_Radius
+        };
     }
 
     // Update is called once per frame
     void Update()
     {
         OnMove(moveAction);
-        OnAttatch(attatchAction);
         OnDetatch(detatchAction);
+        OnAttatch(attatchAction);
         OnInteract(interactAction);
         OnJump(jumpAction);
-
 
         currentState?.OnUpdate();
     }
@@ -146,9 +187,12 @@ public class PlayerStateMachine : MonoBehaviour
         currentState?.OnExit();
         currentState = state;
         currentState.OnEnter();
-        Debug.Log($"Swapped State. Current State: {currentState}");
+        Debug.Log($"Player Swapped State. Current State: {currentState}");
     }
 
+    /// <summary>
+    /// Performs a box cast and returns true if the ground is detected at the players feet
+    /// </summary>
     bool GroundCheck()
     {
 
@@ -165,6 +209,29 @@ public class PlayerStateMachine : MonoBehaviour
             Debug.Log("Not Grounded...");
             return false;
         }
+    }
+
+    /// <summary>
+    /// Updates the radius of the players VirtualCamera with a given multiplier
+    /// </summary>
+    public void UpdateCameraRadius(float distanceScaleMultiplier)
+    {
+        CinemachineFreeLook.Orbit[] orbits = _followCamera.m_Orbits;
+        orbits[0].m_Radius = cameraRadiuses[0] * distanceScaleMultiplier;
+        orbits[1].m_Radius = cameraRadiuses[1] * distanceScaleMultiplier;
+        orbits[2].m_Radius = cameraRadiuses[2] * distanceScaleMultiplier;
+    }
+
+    /// <summary>
+    /// Cooldown after the player has attatched to a human. Prevents them from mashing on and off the humans head
+    /// </summary>
+    public IEnumerator AttachmentCooldown()
+    {
+        CanAttatch = false;
+        CanDetatch = false;
+        yield return new WaitForSeconds(.1f);
+        CanDetatch = true;
+        CanAttatch = true;
     }
 
     private void OnDrawGizmos()
