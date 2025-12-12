@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindWithTag("OctoPlayer").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -48,6 +48,7 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        agent.speed = 1.2f;
 
         //walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f)
@@ -59,6 +60,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent.SetDestination(player.position);
         Debug.Log("stalking");
+        agent.speed = 1.5f;
     }
 
     private void AttackPlayer()
@@ -74,12 +76,12 @@ public class EnemyAI : MonoBehaviour
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
             //
-
+            Debug.Log("Attacking yup");
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
 
-        Debug.Log("Attacking yup");
+        
     }
 
     private void ResetAttack()
