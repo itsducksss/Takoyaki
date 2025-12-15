@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3816140534711741689}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,6 +167,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _headPos: {fileID: 4111546481489539517}
   _isControlled: 0
+  _jumpPower: 2.5
+  _moveSpeed: 2.5
+  _characterRotateSpeed: 100
+  _groundCheckDistance: 1
+  _groundCheckSize: {x: 1, y: 0.25, z: 1}
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 128
+  CanJump: 1
+  _rb: {fileID: 7652905135355348973}
 --- !u!136 &8008851370311838395
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -187,7 +197,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7652905135355348973
@@ -199,8 +209,8 @@ Rigidbody:
   m_GameObject: {fileID: 4222681364346127213}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
