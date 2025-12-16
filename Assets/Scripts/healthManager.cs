@@ -8,10 +8,12 @@ public class HealthManager : MonoBehaviour
     public Slider healthBar;
     public float healthAmount = 100f;
 
-    private const float coef = 0.05f;
+    //private const float coef = 0.05f; <--- not needed anymore
     public Collider[] hitColliders;
     private const int maxColliders = 10;
     public bool isWatered;
+    public float gainPerSecond = 1f;
+    public float lossPerSecond = 0.5f;
 
     public TMP_Text healthText;
 
@@ -26,7 +28,7 @@ public class HealthManager : MonoBehaviour
     {
         if (isWatered)                                                                                                                                                                                                                                                                                
         {
-            healthAmount += coef * 0.5f;
+            healthAmount += gainPerSecond * Time.deltaTime;
             Debug.Log("Gulp...gulp...gulp");
 
             if (healthAmount > 100f)
@@ -38,14 +40,14 @@ public class HealthManager : MonoBehaviour
         else
         {
             //Debug.Log("THOIUSTRY WAAAWWTER");
-            healthAmount -= coef * 0.05f;
+            healthAmount -= lossPerSecond * Time.deltaTime;
         }
 
 
         //healthAmount -= coef * 0.05f; //(Change back to 0.05)
         healthBar.value = healthAmount / 100f;
 
-        healthText.text = healthAmount + "/" + 100;
+        healthText.text = $"{healthAmount:N1}/100";
 
         if (healthAmount <= 0)
         {

@@ -40,7 +40,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] LayerMask _groundMask;
 
     [Header("Input")]
-    public Vector2 MoveDirection { get; set; }
+    public Vector2 MoveDirection;
     [SerializeField] float _cameraRotateSpeed = 1f;
     public float CameraRotateSpeed { get { return _cameraRotateSpeed; } }
     [Tooltip("The speed of the player characters rotation when following the camera")]
@@ -109,6 +109,8 @@ public class PlayerStateMachine : MonoBehaviour
         // Lock the cursor
         Cursor.lockState = CursorLockMode.Locked;
 
+        Debug.Log(moveAction);
+
         UpdateSensitivity(_cameraRotateSpeed);
     }
 
@@ -145,7 +147,7 @@ public class PlayerStateMachine : MonoBehaviour
     public void UpdateSensitivity(float newSensitivity = 1f) //float xSensitivity, float ySensitivity
     {
         _cameraRotateSpeed = newSensitivity;
-        lookAction.ApplyBindingOverride(new InputBinding { overrideProcessors = $"scale(factor={CameraRotateSpeed})" });
+        //lookAction.ApplyBindingOverride(new InputBinding { overrideProcessors = $"scale(factor={CameraRotateSpeed})" });
     }
     #endregion
 

@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 7910368971155795817}
   m_Layer: 3
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: OctoPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

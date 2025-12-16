@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HumanStateMachine : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class HumanStateMachine : MonoBehaviour
     [SerializeField] bool _isControlled;
     public bool IsControlled { get { return _isControlled; } set { _isControlled = value; } }
     public PlayerStateMachine PlayerSM { get; private set; }
+
+    [Header("Patrol Data")]
+    public float range;
+    public Transform centrePoint;
+    public NavMeshAgent agent;
 
     [Header("Stats")]
     [SerializeField] float _jumpPower = 1.0f;
@@ -39,6 +45,7 @@ public class HumanStateMachine : MonoBehaviour
     [Header("Components")]
     [SerializeField] Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
+
 
     void Start()
     {
