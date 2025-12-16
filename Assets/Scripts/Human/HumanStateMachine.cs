@@ -22,6 +22,8 @@ public class HumanStateMachine : MonoBehaviour
     public float range;
     public Transform centrePoint;
     public NavMeshAgent agent;
+    public int m_PathDestinationNodeIndex = 0;
+    public Path path;
 
     [Header("Stats")]
     [SerializeField] float _jumpPower = 1.0f;

@@ -17,24 +17,20 @@ public class HumanState_Patrol : State
 
     public override void OnExit()
     {
-        sm.agent.isStopped = true;
-        sm.agent.ResetPath(); // makes it so that the nav mesh agent does not continously make the player move to the set point from the void udate dunction
-
+        sm.agent.isStopped = true; // makes it so that the nav mesh agent does not continuously make the player move to the set point from the void update function
+        sm.agent.ResetPath();
         base.OnExit();
 
     }
 
     public override void OnUpdate()
     {
-        if (sm.agent.remainingDistance <= sm.agent.stoppingDistance) // <---- done with the set path this is the thing that is making the null ref
-        {
-            Vector3 point;
-            if (RandomPoint(sm.centrePoint.position, sm.range, out point)) // does not have a reference fir the centre ppoint transform to do the random movement
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                sm.agent.SetDestination(point);
-            }
-        }
+        sm.m_PathDestinationNodeIndex = sm.path.UpdatePathDestination(sm.gameObject.transform, sm.m_PathDestinationNodeIndex);
+
+        Vector3 nextDestination = sm.path.GetDestinationPath(sm.gameObject.transform, sm.m_PathDestinationNodeIndex);
+
+        SetNavDestination(nextDestination);
+
         base.OnUpdate();
 
     }
@@ -45,17 +41,11 @@ public class HumanState_Patrol : State
 
     }
 
-    bool RandomPoint(Vector3 center, float range, out Vector3 result) // this just means that it takes the centre point the picks a random numerical value between 0 and ur set range and uses that to draw a point within the sphere
+    public void SetNavDestination(Vector3 destination)
     {
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; // random point in a sphere
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-        {
-            result = hit.position;
-            return true;
+        if (sm.agent.enabled)
+        { 
+            sm.agent.SetDestination(destination);
         }
-
-        result = Vector3.zero;
-        return false;
     }
 }
