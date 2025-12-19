@@ -24,6 +24,7 @@ public class HumanStateMachine : MonoBehaviour
     public NavMeshAgent agent;
     public int m_PathDestinationNodeIndex = 0;
     public Path path;
+    public FieldOfView FOV;
 
     [Header("Stats")]
     [SerializeField] float _jumpPower = 1.0f;

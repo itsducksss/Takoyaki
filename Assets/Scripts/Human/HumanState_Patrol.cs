@@ -25,11 +25,25 @@ public class HumanState_Patrol : State
 
     public override void OnUpdate()
     {
-        sm.m_PathDestinationNodeIndex = sm.path.UpdatePathDestination(sm.gameObject.transform, sm.m_PathDestinationNodeIndex);
+        if (sm.FOV.canSeePlayer == true)
+        {
+            Debug.Log("I sees u ayyyyyyeeee");
 
-        Vector3 nextDestination = sm.path.GetDestinationPath(sm.gameObject.transform, sm.m_PathDestinationNodeIndex);
+            //sm.transform.LookAt(sm.FOV.playerRef.transform.position);
+            float distance = Vector3.Distance(sm.transform.position, sm.FOV.playerRef.transform.position);
+            sm.transform.position += sm.transform.forward * 1f * Time.deltaTime;
 
-        SetNavDestination(nextDestination);
+            sm.agent.isStopped = true; // makes it so that the nav mesh agent does not continuously make the player move to the set point from the void update function
+            sm.agent.ResetPath();
+        }
+        else
+        {
+            sm.m_PathDestinationNodeIndex = sm.path.UpdatePathDestination(sm.gameObject.transform, sm.m_PathDestinationNodeIndex);
+
+            Vector3 nextDestination = sm.path.GetDestinationPath(sm.gameObject.transform, sm.m_PathDestinationNodeIndex);
+
+            SetNavDestination(nextDestination);
+        }
 
         base.OnUpdate();
 
