@@ -3256,6 +3256,10 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6298551667368090357, guid: 3ed7db5f2eb9b314582408abc34eb918, type: 3}
+      propertyPath: FOV
+      value: 
+      objectReference: {fileID: 717800254}
+    - target: {fileID: 6298551667368090357, guid: 3ed7db5f2eb9b314582408abc34eb918, type: 3}
       propertyPath: path
       value: 
       objectReference: {fileID: 1166531270}
@@ -3275,6 +3279,10 @@ PrefabInstance:
       propertyPath: centrePoint
       value: 
       objectReference: {fileID: 1166531269}
+    - target: {fileID: 6298551667368090357, guid: 3ed7db5f2eb9b314582408abc34eb918, type: 3}
+      propertyPath: _isControlled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6298551667368090357, guid: 3ed7db5f2eb9b314582408abc34eb918, type: 3}
       propertyPath: m_PathDestinationNodeIndex
       value: 1
