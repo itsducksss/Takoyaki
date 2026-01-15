@@ -61,6 +61,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 128
+  MoveDirection: {x: 0, y: 0}
   _cameraRotateSpeed: 5
   _characterRotateSpeed: 100
   _unattatchedCameraRadiusScaleMultiplier: 1
@@ -84,6 +85,8 @@ MonoBehaviour:
   healthAmount: 100
   hitColliders: []
   isWatered: 0
+  gainPerSecond: 1
+  lossPerSecond: 0.5
   healthText: {fileID: 5323378450151720532}
 --- !u!54 &5234886005197075129
 Rigidbody:

@@ -1,4 +1,3 @@
-using Palmmedia.ReportGenerator.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,7 +15,7 @@ public class RandomMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (agent.remainingDistance <= agent.stoppingDistance) // done with the set path
         {

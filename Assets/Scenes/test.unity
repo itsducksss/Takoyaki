@@ -223,8 +223,6 @@ GameObject:
   - component: {fileID: 508481232}
   - component: {fileID: 508481231}
   - component: {fileID: 508481230}
-  - component: {fileID: 508481229}
-  - component: {fileID: 508481235}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -232,18 +230,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &508481229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508481228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12e6e09472e977140969701ac19cd6ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &508481230
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -333,56 +319,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &508481235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508481228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: d3fef559f30441e4e828b7931942c968, type: 3}
-  m_NotificationBehavior: 3
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ffbf9cbc-f7c4-458e-9a54-d072f2ead41d
-    m_ActionName: 'Human Movement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2b80bead-ae2b-47fb-9463-29193ad64a0c
-    m_ActionName: 'Human Movement/Jump[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 16cfc54c-f447-4559-9f83-eae33e167768
-    m_ActionName: 'Human Movement/NoMaster[/Keyboard/e]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: eaf9c436-335e-45e8-b46a-ea2abe9eb655
-    m_ActionName: UI/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d59df02c-09df-4165-8239-5f7b829f96f8
-    m_ActionName: Player Movement/Interact
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player Movement
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1330939725
 GameObject:
   m_ObjectHideFlags: 0

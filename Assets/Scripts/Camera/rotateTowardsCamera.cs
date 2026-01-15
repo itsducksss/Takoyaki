@@ -14,7 +14,7 @@ public class rotateTowardsCamera : MonoBehaviour
     {
         if (mainCam != null)
         {
-            transform.LookAt(transform.position + mainCam.transform.position + Vector3.forward, mainCam.transform.rotation * Vector3.up);
+            transform.LookAt(transform.position + mainCam.transform.position + Vector3.forward, mainCam.transform.rotation * Vector3.up * Time.deltaTime); // added Time.deltaTime but is not needed
         }
     }
 }

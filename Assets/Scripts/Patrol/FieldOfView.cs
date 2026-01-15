@@ -15,6 +15,7 @@ public class FieldOfView : MonoBehaviour
 
     public bool canSeePlayer;
 
+
     //attack but no work
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
