@@ -27,4 +27,9 @@ public abstract class StateInput : State
     {
 
     }
+
+    public virtual void OnLockOn(InputAction context)
+    {
+
+    }
 }

@@ -1,7 +1,8 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
 using Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
@@ -47,6 +48,9 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] float _characterRotateSpeed = 5f;
     public float CharacterRotateSpeed { get { return _characterRotateSpeed; } }
 
+    public GameObject CurrentTarget { get; private set; }
+    private List<GameObject> availableTargets = new List<GameObject>();
+
     [Header("Attatchment")]
 
     [Tooltip("The multiplier applied to the FreeLook camera when not attatched to a Human")]
@@ -89,6 +93,7 @@ public class PlayerStateMachine : MonoBehaviour
     private InputAction detatchAction;
     private InputAction interactAction;
     private InputAction jumpAction;
+    private InputAction lockOnAction;
 
     #endregion
 
@@ -101,6 +106,7 @@ public class PlayerStateMachine : MonoBehaviour
         interactAction = InputSystem.actions.FindAction("Interact");
         jumpAction = InputSystem.actions.FindAction("Jump");
         lookAction = InputSystem.actions.FindAction("Look");
+        lockOnAction = InputSystem.actions.FindAction("LockOn");
 
         // Give the player states the reference to this State Machine
         MovementState.sm = this;
@@ -141,6 +147,11 @@ public class PlayerStateMachine : MonoBehaviour
         currentState?.OnInteract(context);
     }
 
+    public void OnLockOn(InputAction context)
+    {
+        currentState?.OnLockOn(context);
+    }
+
     private InputAction lookAction;
 
     // List of Process Overrides: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Processors.html
@@ -175,6 +186,7 @@ public class PlayerStateMachine : MonoBehaviour
         OnAttatch(attatchAction);
         OnInteract(interactAction);
         OnJump(jumpAction);
+        OnLockOn(lockOnAction);
 
         currentState?.OnUpdate();
     }
@@ -231,7 +243,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         CanAttatch = false;
         CanDetatch = false;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.1f); // how long cool down is to attach and detach
         CanDetatch = true;
         CanAttatch = true;
     }
