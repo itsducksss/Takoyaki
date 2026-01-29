@@ -11,14 +11,14 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] string _DisplayName;
     [SerializeField] Camera LinkedCamera;
 
-    [SerializeField] bool SyncToMainCameraConfig = true;
+    //[SerializeField] bool SyncToMainCameraConfig = true;
 
     [SerializeField] AudioListener CameraAudio;
     [SerializeField] Transform PivotPoint;
-    [SerializeField] float DefaultPitch = 20f;
-    [SerializeField] float AngleSwept = 60f;
-    [SerializeField] float SweepSpeed = 6f;
-    [SerializeField] int OutputTextureSize = 256;
+    //[SerializeField] float DefaultPitch = 20f;
+    //[SerializeField] float AngleSwept = 60f;
+    //[SerializeField] float SweepSpeed = 6f;
+    //[SerializeField] int OutputTextureSize = 256;
 
     [Header("Detection")]
     [SerializeField] float DetectionHalfAngle = 30f;
@@ -29,6 +29,7 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] Color Colour_FullyDetected = Color.red;
     [SerializeField] float DetectionBuildRate = 0.5f;
     [SerializeField] float DetectionDecayRate = 0.5f;
+    [SerializeField] [Range(0f, 1f)] float SuspicionThreshold = 0.5f;
     [SerializeField] List<string> DetectableTags;
     [SerializeField] LayerMask DetectionLayerMask = ~0;
     float CosDetectionHalfAngle;
@@ -37,8 +38,8 @@ public class SecurityCamera : MonoBehaviour
     public string DisplayName => _DisplayName;
     public GameObject CurrentlyDetectedTarget { get; private set; }
 
-    float CurrentAngle = 0f;
-    bool SweepClockwise = true;
+   // float CurrentAngle = 0f;
+    //bool SweepClockwise = true;
     //List<SecurityConsole> CurrentlywatchingConsoles = new List<SecurityConsole>(); make script called SecurityConsole
     class PotentialTarget
     {
@@ -62,10 +63,26 @@ public class SecurityCamera : MonoBehaviour
         CosDetectionHalfAngle = Mathf.Cos(Mathf.Deg2Rad * DetectionHalfAngle);
     }
 
+    //wwa[SerializeField] float TargetVOffset = 1.0f;
+
     // Update is called once per frame
     void Update()
     {
         RefreshTargetInfo();
+        //Quaternion desiredRitation = PivotPoint.transform.rotation;
+
+        //if we have a target above the threshold do not auto-rotate
+        //if (CurrentlyDetectedTarget != null && AllTargets[CurrentlyDetectedTarget].DetectionLevel >= SuspicionThreshold)
+        //{
+            //if (AllTargets[CurrentlyDetectedTarget].InFOV)
+            //{ 
+                //var vecToTarget = (CurrentlyDetectedTarget.transform.rotation + TargetVOffset * Vector3.up - PivotPoint.transform.position).nomalized;
+            //}
+        //}
+        //else 
+        //{ 
+        
+        //}
     }
 
     void RefreshTargetInfo()
