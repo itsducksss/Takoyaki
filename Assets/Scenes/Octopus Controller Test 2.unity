@@ -5570,6 +5570,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3077254433880626417, guid: 77465996960bbaf4b8d12708b03469b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4146617649425138394, guid: 77465996960bbaf4b8d12708b03469b0, type: 3}
       propertyPath: m_Camera
       value: 
@@ -6574,7 +6578,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc84e4aea1ebf4844bc67345226107d2, type: 2}
+  - {fileID: 2100000, guid: 82caca037eae99c4cbb777b653d371c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

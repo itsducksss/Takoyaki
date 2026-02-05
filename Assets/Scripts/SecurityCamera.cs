@@ -1,151 +1,205 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using System;
-using Mono.Cecil.Cil;
+using UnityEngine;
+using UnityEngine.Events;
 
 public class SecurityCamera : MonoBehaviour
 {
-    //Code from https://www.youtube.com/watch?v=pjqs4H8cHp4
-    #region Variables
     [Header("General Settings")]
     [SerializeField] string _DisplayName;
     [SerializeField] Camera LinkedCamera;
 
-    //[SerializeField] bool SyncToMainCameraConfig = true;
+    [SerializeField] bool SyncToMainCameraConfig = true;
 
     [SerializeField] AudioListener CameraAudio;
     [SerializeField] Transform PivotPoint;
-    //[SerializeField] float DefaultPitch = 20f;
-    //[SerializeField] float AngleSwept = 60f;
-    //[SerializeField] float SweepSpeed = 6f;
-    //[SerializeField] int OutputTextureSize = 256;
+    [SerializeField] float DefaultPitch = 20f;
+    [SerializeField] float AngleSwept = 60f;
+    [SerializeField] float SweepSpeed = 6f;
+    [SerializeField] int OutputTextureSize = 256;
+    [SerializeField] float MaxRotationSpeed = 15f;
 
     [Header("Detection")]
     [SerializeField] float DetectionHalfAngle = 30f;
     [SerializeField] float DetectionRange = 20f;
+    [SerializeField] float TargetVOffset = 1f;
     [SerializeField] SphereCollider DetectionTrigger;
     [SerializeField] Light DetectionLight;
     [SerializeField] Color Colour_NothingDetected = Color.green;
     [SerializeField] Color Colour_FullyDetected = Color.red;
     [SerializeField] float DetectionBuildRate = 0.5f;
     [SerializeField] float DetectionDecayRate = 0.5f;
-    [SerializeField] [Range(0f, 1f)] float SuspicionThreshold = 0.5f;
+    [SerializeField][Range(0f, 1f)] float SuspicionThreshold = 0.5f;
     [SerializeField] List<string> DetectableTags;
     [SerializeField] LayerMask DetectionLayerMask = ~0;
-    float CosDetectionHalfAngle;
+
+    [SerializeField] UnityEvent<GameObject> OnDetected = new UnityEvent<GameObject>();
+    [SerializeField] UnityEvent OnAllClear = new UnityEvent();
 
     public RenderTexture OutputTexture { get; private set; }
     public string DisplayName => _DisplayName;
     public GameObject CurrentlyDetectedTarget { get; private set; }
+    public bool HasDetectedTarget { get; private set; } = false;
 
-   // float CurrentAngle = 0f;
-    //bool SweepClockwise = true;
-    //List<SecurityConsole> CurrentlywatchingConsoles = new List<SecurityConsole>(); make script called SecurityConsole
+    float CurrentAngle = 0f;
+    float CosDetectionHalfAngle;
+    bool SweepClockwise = true;
+
     class PotentialTarget
     {
         public GameObject LinkedGO;
         public bool InFOV;
         public float DetectionLevel;
+        public bool OnDetectedEventSent;
     }
 
     Dictionary<GameObject, PotentialTarget> AllTargets = new Dictionary<GameObject, PotentialTarget>();
 
-    #endregion
+    // Start is called before the first frame update
     void Start()
     {
-        //setup for the light and collider
+        // turn the camera off by default
+        LinkedCamera.enabled = false;
+        CameraAudio.enabled = false;
+
+        // setup the collider and light
         DetectionLight.color = Colour_NothingDetected;
         DetectionLight.range = DetectionRange;
         DetectionLight.spotAngle = DetectionHalfAngle * 2f;
         DetectionTrigger.radius = DetectionRange;
 
-        //cache the detection data
+        // cache the detection data
         CosDetectionHalfAngle = Mathf.Cos(Mathf.Deg2Rad * DetectionHalfAngle);
-    }
 
-    //wwa[SerializeField] float TargetVOffset = 1.0f;
+        //if (SyncToMainCameraConfig)
+        //{
+        //    LinkedCamera.clearFlags = Camera.main.clearFlags;
+        //    LinkedCamera.backgroundColor = Camera.main.backgroundColor;
+        //}
+
+        // setup the render texture
+        OutputTexture = new RenderTexture(OutputTextureSize, OutputTextureSize, 32);
+        LinkedCamera.targetTexture = OutputTexture;
+    }
 
     // Update is called once per frame
     void Update()
     {
         RefreshTargetInfo();
-        //Quaternion desiredRitation = PivotPoint.transform.rotation;
 
-        //if we have a target above the threshold do not auto-rotate
+        //Quaternion desiredRotation = PivotPoint.transform.rotation;
+
+        //// if we have a target above the threshold then don't auto-rotate
         //if (CurrentlyDetectedTarget != null && AllTargets[CurrentlyDetectedTarget].DetectionLevel >= SuspicionThreshold)
         //{
-            //if (AllTargets[CurrentlyDetectedTarget].InFOV)
-            //{ 
-                //var vecToTarget = (CurrentlyDetectedTarget.transform.rotation + TargetVOffset * Vector3.up - PivotPoint.transform.position).nomalized;
-            //}
+        //    if (AllTargets[CurrentlyDetectedTarget].InFOV)
+        //    {
+        //        var vecToTarget = (CurrentlyDetectedTarget.transform.position + TargetVOffset * Vector3.up -
+        //                           PivotPoint.transform.position).normalized;
+
+        //        desiredRotation = Quaternion.LookRotation(vecToTarget, Vector3.up) * Quaternion.Euler(0f, 90f, 0f);
+        //    }
         //}
-        //else 
-        //{ 
-        
+        //else
+        //{
+        //    // update the angle
+        //    CurrentAngle += SweepSpeed * Time.deltaTime * (SweepClockwise ? 1f : -1f);
+        //    if (Mathf.Abs(CurrentAngle) >= (AngleSwept * 0.5f))
+        //        SweepClockwise = !SweepClockwise;
+
+        //    // calculate the rotation
+        //    desiredRotation = PivotPoint.transform.parent.rotation * Quaternion.Euler(0f, CurrentAngle, DefaultPitch);
         //}
+
+        //PivotPoint.transform.rotation = Quaternion.RotateTowards(PivotPoint.transform.rotation,
+        //                                                         desiredRotation,
+        //                                                         MaxRotationSpeed * Time.deltaTime);
     }
 
     void RefreshTargetInfo()
     {
         float highestDetectionLevel = 0f;
         CurrentlyDetectedTarget = null;
-        //refresh each target
+
+        // refresh each target
         foreach (var target in AllTargets)
         {
             var targetInfo = target.Value;
 
             bool isVisible = false;
 
-            //is the target in the field of view
-            Vector3 vecToTarget = targetInfo.LinkedGO.transform.position - LinkedCamera.transform.position;
-            if (Vector3.Dot(LinkedCamera.transform.forward, vecToTarget.normalized) >= CosDetectionHalfAngle)
+            // is the target in the field of view
+            Vector3 vecToTarget = (targetInfo.LinkedGO.transform.position + TargetVOffset * Vector3.up -
+                                   LinkedCamera.transform.position).normalized;
+            if (Vector3.Dot(LinkedCamera.transform.forward, vecToTarget) >= CosDetectionHalfAngle)
             {
-                //check if we can see the target
+                // check if we can see the target
                 RaycastHit hitInfo;
-                if (Physics.Raycast(LinkedCamera.transform.position, LinkedCamera.transform.forward, out hitInfo, DetectionRange, DetectionLayerMask, QueryTriggerInteraction.Ignore))
-                { 
-                    if(hitInfo.collider.gameObject == targetInfo.LinkedGO)
+                if (Physics.Raycast(LinkedCamera.transform.position, vecToTarget,
+                                    out hitInfo, DetectionRange, DetectionLayerMask, QueryTriggerInteraction.Ignore))
+                {
+                    if (hitInfo.collider.gameObject == targetInfo.LinkedGO)
                         isVisible = true;
                 }
-            } 
+            }
 
-            //update the detection level
+            // update the detection level
             targetInfo.InFOV = isVisible;
             if (isVisible)
+            {
                 targetInfo.DetectionLevel = Mathf.Clamp01(targetInfo.DetectionLevel + DetectionBuildRate * Time.deltaTime);
-            else
-                targetInfo.DetectionLevel = Mathf.Clamp01(targetInfo.DetectionLevel + DetectionDecayRate * Time.deltaTime);
 
-            //found a more detected target?
-            if (targetInfo.DetectionLevel > targetInfo.DetectionLevel)
-            { 
+                // notify that a target was seen
+                if (targetInfo.DetectionLevel >= 1f && !targetInfo.OnDetectedEventSent)
+                {
+                    HasDetectedTarget = true;
+                    targetInfo.OnDetectedEventSent = true;
+                    OnDetected.Invoke(targetInfo.LinkedGO);
+                }
+            }
+            else
+                targetInfo.DetectionLevel = Mathf.Clamp01(targetInfo.DetectionLevel - DetectionDecayRate * Time.deltaTime);
+
+            // found a new more detected target?
+            if (targetInfo.DetectionLevel > highestDetectionLevel)
+            {
                 highestDetectionLevel = targetInfo.DetectionLevel;
                 CurrentlyDetectedTarget = targetInfo.LinkedGO;
             }
         }
-        // updates the light colour
+
+        // update the light colour
         if (CurrentlyDetectedTarget != null)
             DetectionLight.color = Color.Lerp(Colour_NothingDetected, Colour_FullyDetected, highestDetectionLevel);
         else
+        {
             DetectionLight.color = Colour_NothingDetected;
+
+            if (HasDetectedTarget)
+            {
+                HasDetectedTarget = false;
+                OnAllClear.Invoke();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //skip if the tag is not supported
-        if(!DetectableTags.Contains(other.tag))
-            return;
-
-        //add to target list
-        AllTargets[other.gameObject] = new PotentialTarget() { LinkedGO = other.gameObject };
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        //skip if the tag is not supported
+        // skip if the tag isn't supported
         if (!DetectableTags.Contains(other.tag))
             return;
 
-        //remove to target list
+        // add to our target list
+        AllTargets[other.gameObject] = new PotentialTarget() { LinkedGO = other.gameObject };
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // skip if the tag isn't supported
+        if (!DetectableTags.Contains(other.tag))
+            return;
+
+        // remove from the target list
         AllTargets.Remove(other.gameObject);
     }
 }
