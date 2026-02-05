@@ -4200,6 +4200,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886052298}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!108 &899153196 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 2248277312670286579, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+  m_PrefabInstance: {fileID: 1668654179}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &911237710
 GameObject:
   m_ObjectHideFlags: 0
@@ -7230,10 +7235,14 @@ PrefabInstance:
     - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
       propertyPath: LinkedCamera
       value: 
-      objectReference: {fileID: 1803838380}
+      objectReference: {fileID: 2146085748}
     - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
       propertyPath: DetectionDecayRate
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: SyncToMainCameraConfig
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
       propertyPath: DetectableTags.Array.size
@@ -7246,6 +7255,46 @@ PrefabInstance:
     - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
       propertyPath: 'DetectableTags.Array.data[0]'
       value: OctoPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnAllClear.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnDetected.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnDetected.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnDetected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 899153196}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnAllClear.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnDetected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnDetected.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_colorTemperature
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnDetected.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Light, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnDetected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122465888118554467, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+      propertyPath: OnDetected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9435,6 +9484,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 305b6a473ce349446be4da850dc22408, type: 3}
   m_PrefabInstance: {fileID: 1916625483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2146085748 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7098191674563721367, guid: 66558d81e8029c747ab0f6f882abe2c6, type: 3}
+  m_PrefabInstance: {fileID: 1668654179}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &71185078020587676
 GameObject:
