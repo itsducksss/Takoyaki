@@ -66,13 +66,6 @@ public class PlayerStateMachine : MonoBehaviour
     
     private float[] cameraRadiuses;
 
-        //[Header("IsVisible")]
-        //[SerializeField] private bool PlayerIsLit;
-        //[SerializeField] Light _spotLight;
-        //Vector3 directionFromLightToPlayer;
-
-
-
     [Header("Components")]
     [SerializeField] Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
@@ -254,52 +247,6 @@ public class PlayerStateMachine : MonoBehaviour
         yield return new WaitForSeconds(.1f); // how long cool down is to attach and detach
         CanDetatch = true;
         CanAttatch = true;
-    }
-
-    private bool PlayerInSpotLight()
-    {
-        if (_spotLights == null || _spotLights.Length == 0) return false;
-
-        foreach (var light in _spotLights)
-        {
-            if (light.transform.parent.gameObject.activeInHierarchy == false ||
-                light.gameObject.activeInHierarchy == false ||
-                light.enabled == false) continue;
-
-            Vector3 directionFromLightToPlayer = transform.position - light.transform.position;
-            float angle = Vector3.Angle(light.transform.forward, directionFromLightToPlayer);
-            if (angle < light.spotangle / 2)
-            {
-                DebugLogDetectingLight(light);
-                HandlePlayerSpottedBySecurityCamera(light);
-                return true;
-            }
-        }
-        return false;
-    }
-    private bool PlayerInPointLight()
-    {
-        if (_pointLights == null || _pointLights.Length == 0) return false;
-
-        foreach (var light in _pointLights)
-        {
-            if (light.transform.parent.gameObject.activeInHierarchy == false ||
-                light.gameObject.activeInHierarchy == false ||
-                light.enabled == false) continue;
-
-            var distance = Vector3.Distance(transform.position, light.transform.position);
-            if (distance < light.range)
-            { 
-                var direaction = light.transform.position - transform.position;
-                if (Physics.Raycast(transform.position, transform.forward, float.MaxValue, Obstruction)) // transform.foward was direction in tutorial
-                {
-                    DebugLogDetectingLight(light);
-                    return true;
-                }
-            }
-            
-        }
-        return false;
     }
 
     private void OnDrawGizmos()
