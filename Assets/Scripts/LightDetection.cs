@@ -74,7 +74,7 @@ public class LightDetection : MonoBehaviour
                 var direaction = light.transform.position - transform.position;
 
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, 9f, LayerMask.GetMask("Player"))) // transform.foward was direction in tutorial
+                if (Physics.Raycast(transform.position, transform.forward, out hit, 30f, LayerMask.GetMask("Player"))) // transform.foward was direction in tutorial
                 {
                     for (int i = 0; i < _pointLights.Length; i++)
                     {
