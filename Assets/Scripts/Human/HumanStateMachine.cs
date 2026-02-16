@@ -18,7 +18,7 @@ public class HumanStateMachine : MonoBehaviour
     public bool IsControlled { get { return _isControlled; } set { _isControlled = value; } }
     public PlayerStateMachine PlayerSM { get; private set; }
 
-    [Header("Patrol Data")]
+    [Header("Patrol/ Idle Data")]
     public float range;
     public Transform centrePoint;
     public NavMeshAgent agent;
