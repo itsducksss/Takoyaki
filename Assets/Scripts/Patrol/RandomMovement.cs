@@ -15,7 +15,7 @@ public class RandomMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Update()
+    public void RandomMovementAction()
     {
         if (agent.remainingDistance <= agent.stoppingDistance) // done with the set path
         {

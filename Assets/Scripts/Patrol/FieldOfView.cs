@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class FieldOfView : MonoBehaviour
 
 
     //attack but no work
-    public float sightRange, attackRange;
+    public float sightRange;
+    public float caughtRange;
     public bool playerInSightRange, playerInAttackRange;
     #endregion
 
@@ -44,11 +46,17 @@ public class FieldOfView : MonoBehaviour
         if (rangeChecks.Length != 0)
         {
             Transform target = rangeChecks[0].transform;
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
+            Vector3 position = transform.position;
+            position.y = target.position.y;
+            Vector3 directionToTarget = (target.position - position).normalized;
 
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                if (distanceToTarget < caughtRange)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                     canSeePlayer = true;
