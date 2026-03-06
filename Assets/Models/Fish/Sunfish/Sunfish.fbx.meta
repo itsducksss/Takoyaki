@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 2d056d9887304c74da09337f70d66c43
+guid: af7f159552326ee4ebe01ddeae4a42b0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sunfish1
+    second: {fileID: 2100000, guid: b545e370c881f8c4f98b7f90fc92cdc9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

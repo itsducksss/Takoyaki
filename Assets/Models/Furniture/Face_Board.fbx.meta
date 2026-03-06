@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 904b9b4e9d80f0a41ada714c2ea778a7
+guid: fae6b642686349e4c8d39d9868d93fdc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: aiStandardSurface3
-    second: {fileID: 2100000, guid: dcdf98ac4a9b14e4fa16815eed1dc182, type: 2}
+      name: Face_Board1
+    second: {fileID: 2100000, guid: 33ca549cca88f1f43a12864a197633b5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -38,7 +38,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 1.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -93,7 +93,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 1.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

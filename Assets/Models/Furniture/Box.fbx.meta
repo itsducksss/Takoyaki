@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 904b9b4e9d80f0a41ada714c2ea778a7
+guid: 4a4969c9b2cc7904d9e9c850569e1570
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: aiStandardSurface3
-    second: {fileID: 2100000, guid: dcdf98ac4a9b14e4fa16815eed1dc182, type: 2}
+      name: Box
+    second: {fileID: 2100000, guid: 608f196cbe5a69249b1a58412badd2c7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
