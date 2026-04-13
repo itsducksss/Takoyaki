@@ -515,7 +515,21 @@ MonoBehaviour:
   jumpForce: 300
   hips: {fileID: 8077103408753719577}
   isGrounded: 0
+  playerControls:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1196960d-a162-4efa-a43b-5071a0959710
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  groundCheckDistance: 0
   offset: {x: 0, y: 0, z: 0}
+  _groundPoint: {fileID: 0}
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &3459634162469130170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,11 +556,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d189b8e3948544e9d1ee5274700bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1885628068934872721}
-  player2Controller: {fileID: 8843174622485127056}
+  playerController: {fileID: 0}
+  player2Controller: {fileID: 0}
+  playerInput: {fileID: 0}
+  playerInput2: {fileID: 0}
   cam: {fileID: 1417578539479526619}
   cam2: {fileID: 159778876820834382}
   player1Active: 1
+  isOcto: 0
+  octoPlayer: {fileID: 0}
+  headPoint: {fileID: 0}
 --- !u!1 &392118646606135442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1141,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2018,7 +2037,21 @@ MonoBehaviour:
   jumpForce: 300
   hips: {fileID: 6413053764548292486}
   isGrounded: 1
+  playerControls:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a6dd4436-c364-4d0d-a84a-1cb340865aa9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  groundCheckDistance: 0
   offset: {x: 0, y: 0, z: 0}
+  _groundPoint: {fileID: 0}
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &6413053764548292486
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2058,11 +2091,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d189b8e3948544e9d1ee5274700bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1885628068934872721}
-  player2Controller: {fileID: 8843174622485127056}
+  playerController: {fileID: 0}
+  player2Controller: {fileID: 0}
+  playerInput: {fileID: 0}
+  playerInput2: {fileID: 0}
   cam: {fileID: 1417578539479526619}
   cam2: {fileID: 159778876820834382}
   player1Active: 1
+  isOcto: 0
+  octoPlayer: {fileID: 0}
+  headPoint: {fileID: 0}
 --- !u!1 &3407014580980555821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,7 +2166,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2577,7 +2615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe7a8979e6b37949a3f0c2c26b2f143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaRotation: 0
+  sensX: 0
+  sensY: 0
+  orientation: {fileID: 0}
 --- !u!1 &6080612288557848018
 GameObject:
   m_ObjectHideFlags: 0
@@ -3647,7 +3687,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4011,7 +4051,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -23,7 +23,7 @@ public class HumanState_Idle : State
 
     }
 
-    FunctionTimer activeTimer;
+    //FunctionTimer activeTimer;
     public override void OnUpdate()
     {
         if (sm.FOV.canSeePlayer == true)
@@ -36,17 +36,17 @@ public class HumanState_Idle : State
 
             sm.agent.isStopped = true; // makes it so that the nav mesh agent does not continuously make the player move to the set point from the void update function
             sm.agent.ResetPath();
-            activeTimer = null;
+            //activeTimer = null;
         }
         else
         {
             // If timer exists, return.
-            if (activeTimer != null) return;
+            //if (activeTimer != null) return;
 
             // If not, create the timer and set path destination!
-            activeTimer = FunctionTimer.Create(RandomMovementAction, 100f);
+           // activeTimer = FunctionTimer.Create(RandomMovementAction, 100f);
 
-            sm.agent.ResetPath();
+            //sm.agent.ResetPath();
 
             sm.m_PathDestinationNodeIndex = sm.path.UpdatePathDestination(sm.gameObject.transform, sm.m_PathDestinationNodeIndex);
 
@@ -74,30 +74,30 @@ public class HumanState_Idle : State
         }
     }
 
-    public void RandomMovementAction()
-    {
-        if (sm.agent.remainingDistance <= sm.agent.stoppingDistance) // done with the set path
-        {
-            Vector3 point;
-            if (RandomPoint(sm.centrePoint.position, sm.range, out point))
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                sm.agent.SetDestination(point);
-            }
-        }
-    }
+    //public void RandomMovementAction()
+    //{
+    //    if (sm.agent.remainingDistance <= sm.agent.stoppingDistance) // done with the set path
+    //    {
+    //        Vector3 point;
+    //        if (RandomPoint(sm.centrePoint.position, sm.range, out point))
+    //        {
+    //            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+    //            sm.agent.SetDestination(point);
+    //        }
+    //    }
+    //}
 
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
-    {
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; // random point in a sphere
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-        {
-            result = hit.position;
-            return true;
-        }
+    //bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    //{
+    //    Vector3 randomPoint = center + Random.insideUnitSphere * range; // random point in a sphere
+    //    NavMeshHit hit;
+    //    if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+    //    {
+    //        result = hit.position;
+    //        return true;
+    //    }
 
-        result = Vector3.zero;
-        return false;
-    }
+    //    result = Vector3.zero;
+    //    return false;
+    //}
 }

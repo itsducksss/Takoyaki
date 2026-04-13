@@ -399,7 +399,7 @@
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -443,7 +443,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard&Mouse",
                     "action": "Attatch",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -465,7 +465,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "Hold(duration=0.3)",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard&Mouse",
                     "action": "Detatch",
                     "isComposite": false,
                     "isPartOfComposite": false

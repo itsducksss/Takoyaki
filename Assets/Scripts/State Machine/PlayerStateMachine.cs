@@ -1,8 +1,8 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -66,6 +66,12 @@ public class PlayerStateMachine : MonoBehaviour
     
     private float[] cameraRadiuses;
 
+    [Header("Interaction")]
+    public PlayerInventoryManager playerInventoryManager;
+    public bool canInteract;
+    [SerializeField] private LayerMask interactableLayerMask;
+    [SerializeField] private float interactDistance = 1f;
+
     [Header("Components")]
     [SerializeField] Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
@@ -95,7 +101,6 @@ public class PlayerStateMachine : MonoBehaviour
     private InputAction interactAction;
     private InputAction jumpAction;
     private InputAction lockOnAction;
-
     #endregion
 
     private void Awake()
@@ -145,7 +150,21 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void OnInteract(InputAction context)
     {
+        Debug.Log($"On Interact: {context.WasPerformedThisDynamicUpdate()}");
+        // When the player has performed the interact input. Scan an area for interactable objects
+        if (context.WasPerformedThisDynamicUpdate())
+        {
+            var hit = Physics.SphereCastAll(transform.position, interactDistance, Vector3.forward, Mathf.Infinity, interactableLayerMask);
+
+            Debug.Log($"Player Interacted. Count = {hit.Length}");
+            if (hit.Length == 0) return;
+
+            if (hit.First().collider.TryGetComponent(out InteractableObject interactable))
+                interactable.OnInteract();
+        }
+
         currentState?.OnInteract(context);
+
     }
 
     public void OnLockOn(InputAction context)
@@ -185,9 +204,10 @@ public class PlayerStateMachine : MonoBehaviour
         OnMove(moveAction);
         OnDetatch(detatchAction);
         OnAttatch(attatchAction);
-        OnInteract(interactAction);
         OnJump(jumpAction);
         OnLockOn(lockOnAction);
+        OnInteract(interactAction);
+
 
         currentState?.OnUpdate();
     }
@@ -256,5 +276,8 @@ public class PlayerStateMachine : MonoBehaviour
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(transform.position + (Vector3.down * _groundCheckDistance), _groundCheckSize);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, interactDistance);
     }
 }

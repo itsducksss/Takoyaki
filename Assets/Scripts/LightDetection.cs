@@ -18,7 +18,7 @@ public class LightDetection : MonoBehaviour
         for (int i = 0; i < camLights.Length; i++)
         {
             _pointLights[0].color = UnityEngine.Color.green;
-            Debug.Log("greeeeen");
+            //Debug.Log("greeeeen");
         }
     }
 
@@ -50,7 +50,7 @@ public class LightDetection : MonoBehaviour
             float angle = Vector3.Angle(light.transform.forward, directionFromLightToPlayer);
             if (angle < light.spotAngle / 2)
             {
-                Debug.Log("Yass queen lightsss");
+                //Debug.Log("Yass queen lightsss");
                 DebugLogDetectingLight();
                 HandlePlayerSpottedBySecurityCamera(); //DebugLogDetectingLight(light); (should all have light in them)
                 return true;
