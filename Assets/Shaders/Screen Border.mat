@@ -26,8 +26,9 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _Min: 0.96
     - _Speed: 3
-    - _Strength: 1
+    - _Strength: 0.6
     m_Colors:
     - _SineMinMax: {r: 0.98, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

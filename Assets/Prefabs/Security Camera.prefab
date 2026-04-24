@@ -79,39 +79,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30526f72438bbe543a4271ad75bf3c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _DisplayName: 
-  LinkedCamera: {fileID: 0}
-  SyncToMainCameraConfig: 1
-  CameraAudio: {fileID: 0}
-  PivotPoint: {fileID: 0}
-  DefaultPitch: 20
-  AngleSwept: 60
-  SweepSpeed: 6
-  OutputTextureSize: 256
-  MaxRotationSpeed: 15
-  DetectionHalfAngle: 30
-  DetectionRange: 20
-  TargetVOffset: 1
-  DetectionTrigger: {fileID: 0}
-  DetectionLight: {fileID: 2248277312670286579}
-  Colour_NothingDetected: {r: 0, g: 1, b: 0, a: 1}
-  Colour_FullyDetected: {r: 1, g: 0, b: 0, a: 1}
-  DetectionBuildRate: 0.5
-  DetectionDecayRate: 0.5
-  SuspicionThreshold: 0.5
-  DetectableTags:
-  - OctoPlayer
-  DetectionLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  detectPosition: {fileID: 1657833648688617404}
   detectRadius: 3
-  OnDetected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAllClear:
-    m_PersistentCalls:
-      m_Calls: []
+  detectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  detectPosition: {fileID: 1657833648688617404}
+  cameraLight: {fileID: 2248277312670286579}
+  _hasDetected: 0
 --- !u!1 &1559947661784844549
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,9 +128,10 @@ GameObject:
   - component: {fileID: 6931823536931445278}
   - component: {fileID: 2248277312670286579}
   - component: {fileID: 1204162632950613380}
-  m_Layer: 0
+  - component: {fileID: 1835400345909996096}
+  m_Layer: 10
   m_Name: Spot Light
-  m_TagString: Untagged
+  m_TagString: Security Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,10 +162,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 15
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 60
+  m_Range: 100
+  m_SpotAngle: 43.5606
+  m_InnerSpotAngle: 35.362686
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -226,7 +201,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -264,6 +239,25 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1835400345909996096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659737809795683283}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7dce44cf335a040b80bb0a04254007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointLights:
+  - {fileID: 2248277312670286579}
+  _spotLights:
+  - {fileID: 2248277312670286579}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &3795597068012856828
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +269,7 @@ GameObject:
   - component: {fileID: 6633138908392281571}
   - component: {fileID: 3255371171030459081}
   - component: {fileID: 2614450625811450329}
+  - component: {fileID: 1240405576953724328}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -351,6 +346,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1240405576953724328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3795597068012856828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5394dfa004a36ca4f94587292840da9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4451344074264316793
 GameObject:
   m_ObjectHideFlags: 0

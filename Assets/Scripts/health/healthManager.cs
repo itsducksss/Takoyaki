@@ -14,12 +14,12 @@ public class HealthManager : MonoBehaviour
     public bool isWatered;
     public float gainPerSecond = 1f;
     public float lossPerSecond = 0.5f;
+    public float multiplier = 1f;
 
     public TMP_Text healthText;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
-    {                               
+    {
         hitColliders = new Collider[maxColliders];
     }
 
@@ -28,7 +28,7 @@ public class HealthManager : MonoBehaviour
     {
         if (isWatered)                                                                                                                                                                                                                                                                                
         {
-            healthAmount += gainPerSecond * Time.deltaTime;
+            healthAmount += gainPerSecond * Time.deltaTime * multiplier;
             Debug.Log("Gulp...gulp...gulp");
 
             if (healthAmount > 100f)
@@ -40,7 +40,7 @@ public class HealthManager : MonoBehaviour
         else
         {
             //Debug.Log("THOIUSTRY WAAAWWTER");
-            healthAmount -= lossPerSecond * Time.deltaTime;
+            healthAmount -= lossPerSecond * Time.deltaTime * multiplier;
         }
 
 
@@ -90,9 +90,7 @@ public class HealthManager : MonoBehaviour
         healthBar.value = healthAmount / 100f;
     }
 
-
-
-public void Heal(float healingAmount)
+    public void Heal(float healingAmount)
     {
         healthAmount += healingAmount;
         healingAmount = Mathf.Clamp(healthAmount, 0, 100);

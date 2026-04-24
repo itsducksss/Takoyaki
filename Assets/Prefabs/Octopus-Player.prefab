@@ -70,7 +70,7 @@ MonoBehaviour:
   canInteract: 0
   interactableLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   interactDistance: 1
   _rb: {fileID: 5234886005197075129}
   _characterCollider: {fileID: 6498519062408661986}
@@ -525,6 +525,7 @@ GameObject:
   - component: {fileID: 711509963582461747}
   - component: {fileID: 7079681163379954560}
   - component: {fileID: 6175920362943987987}
+  - component: {fileID: 4264115082697625189}
   m_Layer: 3
   m_Name: Alert Indicator
   m_TagString: Untagged
@@ -579,9 +580,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1242528390, guid: e8ad5e6abde7a744db3495a2a8efbd2c, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -589,6 +590,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4264115082697625189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053919524575990488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1aa8f2e967696948a526eb7135a6620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4993671278516163973
 GameObject:
   m_ObjectHideFlags: 0

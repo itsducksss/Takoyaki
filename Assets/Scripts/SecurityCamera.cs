@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SecurityCamera : MonoBehaviour
 {
@@ -12,29 +8,48 @@ public class SecurityCamera : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Transform detectPosition;
-    private bool _hasDetected;
+    [SerializeField] private Light cameraLight;
+    [SerializeField] bool _hasDetected;
+
+    private HealthManager _healthManager;
+
+    private void Awake()
+    {
+        _healthManager = FindFirstObjectByType<HealthManager>(FindObjectsInactive.Include);
+    }
 
     private void FixedUpdate()
     {
         DetectTarget();
 
+
         if (_hasDetected)
         {
-
+            OverlayEffectManager.Instance.EnableEffect();
+            cameraLight.color = Color.red;
+            _healthManager.multiplier = 20f;
+        }
+        else
+        {
+            OverlayEffectManager.Instance.DisableEffect();
+            cameraLight.color = Color.green;
+            _healthManager.multiplier = 1f;
         }
     }
 
     private void DetectTarget()
     {
-        Physics.SphereCast(detectPosition.position, detectRadius, Vector3.forward, out RaycastHit hit, Mathf.Infinity, detectionLayerMask);
-        if (hit.collider)
+        Collider[] col = Physics.OverlapSphere(detectPosition.position, detectRadius, detectionLayerMask);
+        if (col.Length > 0 )
         {
-            if (hit.collider) _hasDetected = true;
+            _hasDetected = true;
+            Debug.Log($"Detected => {col[0].gameObject.name}");
         }
         else
         {
             _hasDetected = false;
         }
+
     }
 
     private void OnDrawGizmosSelected()
