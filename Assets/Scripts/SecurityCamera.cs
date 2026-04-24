@@ -1,13 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class SecurityCamera : MonoBehaviour
 {
-    [Header("General Settings")]
+    [Header("Settings")]
+    [SerializeField] private float detectRadius = 3f;
+    [SerializeField] private LayerMask detectionLayerMask;
+
+    [Header("Components")]
+    [SerializeField] private Transform detectPosition;
+    private bool _hasDetected;
+
+    private void FixedUpdate()
+    {
+        DetectTarget();
+
+        if (_hasDetected)
+        {
+
+        }
+    }
+
+    private void DetectTarget()
+    {
+        Physics.SphereCast(detectPosition.position, detectRadius, Vector3.forward, out RaycastHit hit, Mathf.Infinity, detectionLayerMask);
+        if (hit.collider)
+        {
+            if (hit.collider) _hasDetected = true;
+        }
+        else
+        {
+            _hasDetected = false;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(detectPosition.position, detectRadius);
+    }
+}
+
+#region Old Code
+/*[Header("General Settings")]
     [SerializeField] string _DisplayName;
-    [SerializeField] Camera LinkedCamera;
+    [SerializeField] GameObject LinkedCamera;
 
     [SerializeField] bool SyncToMainCameraConfig = true;
 
@@ -32,6 +72,8 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField][Range(0f, 1f)] float SuspicionThreshold = 0.5f;
     [SerializeField] List<string> DetectableTags;
     [SerializeField] LayerMask DetectionLayerMask = ~0;
+    [SerializeField] private Transform detectPosition;
+    [SerializeField] private float detectRadius = 3f;
 
     [SerializeField] UnityEvent<GameObject> OnDetected = new UnityEvent<GameObject>();
     [SerializeField] UnityEvent OnAllClear = new UnityEvent();
@@ -59,8 +101,8 @@ public class SecurityCamera : MonoBehaviour
     void Start()
     {
         // turn the camera off by default
-        LinkedCamera.enabled = false;
-        CameraAudio.enabled = false;
+        //LinkedCamera.enabled = false;
+        //CameraAudio.enabled = false;
 
         // setup the collider and light
         DetectionLight.color = Colour_NothingDetected;
@@ -79,41 +121,13 @@ public class SecurityCamera : MonoBehaviour
 
         // setup the render texture
         OutputTexture = new RenderTexture(OutputTextureSize, OutputTextureSize, 32);
-        LinkedCamera.targetTexture = OutputTexture;
+        //LinkedCamera.targetTexture = OutputTexture;
     }
 
     // Update is called once per frame
     void Update()
     {
         RefreshTargetInfo();
-
-        //Quaternion desiredRotation = PivotPoint.transform.rotation;
-
-        //// if we have a target above the threshold then don't auto-rotate
-        //if (CurrentlyDetectedTarget != null && AllTargets[CurrentlyDetectedTarget].DetectionLevel >= SuspicionThreshold)
-        //{
-        //    if (AllTargets[CurrentlyDetectedTarget].InFOV)
-        //    {
-        //        var vecToTarget = (CurrentlyDetectedTarget.transform.position + TargetVOffset * Vector3.up -
-        //                           PivotPoint.transform.position).normalized;
-
-        //        desiredRotation = Quaternion.LookRotation(vecToTarget, Vector3.up) * Quaternion.Euler(0f, 90f, 0f);
-        //    }
-        //}
-        //else
-        //{
-        //    // update the angle
-        //    CurrentAngle += SweepSpeed * Time.deltaTime * (SweepClockwise ? 1f : -1f);
-        //    if (Mathf.Abs(CurrentAngle) >= (AngleSwept * 0.5f))
-        //        SweepClockwise = !SweepClockwise;
-
-        //    // calculate the rotation
-        //    desiredRotation = PivotPoint.transform.parent.rotation * Quaternion.Euler(0f, CurrentAngle, DefaultPitch);
-        //}
-
-        //PivotPoint.transform.rotation = Quaternion.RotateTowards(PivotPoint.transform.rotation,
-        //                                                         desiredRotation,
-        //                                                         MaxRotationSpeed * Time.deltaTime);
     }
 
     void RefreshTargetInfo()
@@ -134,12 +148,18 @@ public class SecurityCamera : MonoBehaviour
             if (Vector3.Dot(LinkedCamera.transform.forward, vecToTarget) >= CosDetectionHalfAngle)
             {
                 // check if we can see the target
-                RaycastHit hitInfo;
-                if (Physics.Raycast(LinkedCamera.transform.position, vecToTarget,
-                                    out hitInfo, DetectionRange, DetectionLayerMask, QueryTriggerInteraction.Ignore))
+                //RaycastHit hitInfo;
+                //if (Physics.Raycast(LinkedCamera.transform.position, vecToTarget,
+                //                    out hitInfo, DetectionRange, DetectionLayerMask, QueryTriggerInteraction.Ignore))
+                //{
+                //    if (hitInfo.collider.gameObject == targetInfo.LinkedGO)
+                //        isVisible = true;
+                //}
+
+                Physics.SphereCast(detectPosition.position, detectRadius, Vector3.forward, out RaycastHit hit, Mathf.Infinity, DetectionLayerMask);
+                if (hit.collider != null)
                 {
-                    if (hitInfo.collider.gameObject == targetInfo.LinkedGO)
-                        isVisible = true;
+                    if (hit.collider == targetInfo.LinkedGO) isVisible = true;
                 }
             }
 
@@ -183,23 +203,23 @@ public class SecurityCamera : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // skip if the tag isn't supported
-        if (!DetectableTags.Contains(other.tag))
-            return;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    // skip if the tag isn't supported
+    //    if (!DetectableTags.Contains(other.tag))
+    //        return;
 
-        // add to our target list
-        AllTargets[other.gameObject] = new PotentialTarget() { LinkedGO = other.gameObject };
-    }
+    //    // add to our target list
+    //    AllTargets[other.gameObject] = new PotentialTarget() { LinkedGO = other.gameObject };
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        // skip if the tag isn't supported
-        if (!DetectableTags.Contains(other.tag))
-            return;
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    // skip if the tag isn't supported
+    //    if (!DetectableTags.Contains(other.tag))
+    //        return;
 
-        // remove from the target list
-        AllTargets.Remove(other.gameObject);
-    }
-}
+    //    // remove from the target list
+    //    AllTargets.Remove(other.gameObject);
+    //}*/
+#endregion
