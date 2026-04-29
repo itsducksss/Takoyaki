@@ -73,6 +73,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float interactDistance = 1f;
 
     [Header("Components")]
+
     [SerializeField] Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
     [SerializeField] Collider _characterCollider;
@@ -94,6 +95,11 @@ public class PlayerStateMachine : MonoBehaviour
             return Vector3.forward; // In case camera goes missing
         }
     }
+
+    [Header("Sounds")]
+    [SerializeField] public AudioSource audioAlerted;
+    [SerializeField] public AudioSource audioAttatched, audioDettached, audioJump, audioJibberish, audioLanded;
+
 
     private InputAction moveAction;
     private InputAction attatchAction;
@@ -150,7 +156,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void OnInteract(InputAction context)
     {
-        Debug.Log($"On Interact: {context.WasPerformedThisDynamicUpdate()}");
         // When the player has performed the interact input. Scan an area for interactable objects
         if (context.WasPerformedThisDynamicUpdate())
         {
@@ -213,7 +218,7 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
+    {   
         currentState?.OnFixedUpdate();
     }
 
@@ -267,6 +272,11 @@ public class PlayerStateMachine : MonoBehaviour
         yield return new WaitForSeconds(.1f); // how long cool down is to attach and detach
         CanDetatch = true;
         CanAttatch = true;
+    }
+
+    public void OnDetected()
+    {
+        if (!audioAlerted.isPlaying) audioAlerted.Play();
     }
 
     private void OnDrawGizmos()

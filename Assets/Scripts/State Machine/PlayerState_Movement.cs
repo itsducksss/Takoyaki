@@ -101,6 +101,7 @@ public class PlayerState_Movement : StateInput
             {
                 sm.CurrentHuman = closest.GetComponent<HumanStateMachine>().ControlledState;
                 sm.SwapState(sm.AttatchedState);
+                sm.audioAttatched.Play();
             }
         }
         else
@@ -115,6 +116,7 @@ public class PlayerState_Movement : StateInput
         {
             Debug.Log("Jumped");
             sm.Rb.AddForce(Vector3.up * sm.JumpPower, ForceMode.Impulse);
+            sm.audioJump.Play();
         }
     }
 

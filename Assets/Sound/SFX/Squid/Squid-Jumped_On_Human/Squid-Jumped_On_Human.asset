@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6537073821596392668
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped_On_Human-01_{-6537073821596392668}
+  m_AudioClip: {fileID: 8300000, guid: 1edeaa584dfc76b4cb1cecf40c44ffbc, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2231430239566451587
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped_On_Human-02_{-2231430239566451587}
+  m_AudioClip: {fileID: 8300000, guid: bd75831574905b542bdc7d785c5c4c57, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5598812363743073732
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped_On_Human-03_{5598812363743073732}
+  m_AudioClip: {fileID: 8300000, guid: 72672b343537fce48be30896a32446f8, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5930679819485050848
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped_On_Human-04_{5930679819485050848}
+  m_AudioClip: {fileID: 8300000, guid: dda999088412cad4fab60518fb9f8d89, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped_On_Human
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: -10, y: 10}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -6537073821596392668}
+  - {fileID: -2231430239566451587}
+  - {fileID: 5598812363743073732}
+  - {fileID: 5930679819485050848}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 1
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0

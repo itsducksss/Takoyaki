@@ -65,6 +65,7 @@ public class PlayerState_Attatched : StateInput
 
             sm.transform.parent = null;
             sm.SwapState(sm.MovementState);
+            sm.audioDettached.Play();
             Debug.Log("Player detatched from the Human");
         }
     }

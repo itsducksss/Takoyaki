@@ -28,12 +28,14 @@ public class SecurityCamera : MonoBehaviour
             OverlayEffectManager.Instance.EnableEffect();
             cameraLight.color = Color.red;
             _healthManager.multiplier = 20f;
+            _healthManager.alertIndicator.SetActive(true);
         }
         else
         {
             OverlayEffectManager.Instance.DisableEffect();
             cameraLight.color = Color.green;
             _healthManager.multiplier = 1f;
+            _healthManager.alertIndicator.SetActive(false);
         }
     }
 

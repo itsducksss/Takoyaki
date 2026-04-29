@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-3540026780046493744
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Alerted-03_{-3540026780046493744}
+  m_AudioClip: {fileID: 8300000, guid: 176a5f32e00818d4fafac653e062ed13, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3078627627082208806
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Alerted-04_{-3078627627082208806}
+  m_AudioClip: {fileID: 8300000, guid: c8f161339c3b9204385ded79198f6362, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2802787696583290301
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Alerted-01_{-2802787696583290301}
+  m_AudioClip: {fileID: 8300000, guid: d906db1f15a8009468af27fe4aeba9f1, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1276397588230785025
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Alerted-02_{1276397588230785025}
+  m_AudioClip: {fileID: 8300000, guid: 800f9289c280edc47adfe4d1679f8d1c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1478795167176499962
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Alerted-07_{1478795167176499962}
+  m_AudioClip: {fileID: 8300000, guid: ba51c5325f678c04bb9601b8bf6ce758, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5016983925920882545
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Alerted-06_{5016983925920882545}
+  m_AudioClip: {fileID: 8300000, guid: 6e25e3563e9db87418a338462d492dcc, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Alerted
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: -10, y: 10}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -2802787696583290301}
+  - {fileID: 1276397588230785025}
+  - {fileID: -3540026780046493744}
+  - {fileID: -3078627627082208806}
+  - {fileID: 7308951712382967630}
+  - {fileID: 5016983925920882545}
+  - {fileID: 1478795167176499962}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 1
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7308951712382967630
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Alerted-05_{7308951712382967630}
+  m_AudioClip: {fileID: 8300000, guid: bf3d4e452bac87649a00affab719472c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

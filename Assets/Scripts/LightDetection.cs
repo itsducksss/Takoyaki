@@ -1,12 +1,14 @@
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.UI;
 
 public class LightDetection : MonoBehaviour
 {
 
     [SerializeField] Light[] _pointLights;
     [SerializeField] Light[] _spotLights;
+    [SerializeField] Image AlertIndicator;
 
     public LayerMask layerMask;
 

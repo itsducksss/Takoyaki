@@ -3,15 +3,18 @@ using UnityEngine.UI;
 
 public class OverlayEffectManager : MonoBehaviour
 {
+    public PlayerStateMachine sm;
     private const string _materialParam = "_Strength";
     [Header("Dependencies")]
     private Material _material;
     [SerializeField] private Image image;
+    private bool hasPlayed;
 
     public static OverlayEffectManager Instance;
 
     private void Awake()
     {
+        sm = FindFirstObjectByType<PlayerStateMachine>();
         _material = new Material(image.material);
         image.material = _material;
 
@@ -57,6 +60,8 @@ public class OverlayEffectManager : MonoBehaviour
 
             _smooth = Mathf.SmoothDamp(_smooth, _timer, ref _velocity, Time.deltaTime);
             UpdateEffect();
+
+            sm.OnDetected();
         }
     }
 

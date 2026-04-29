@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-8262419963563505134
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jibberish-01_{-8262419963563505134}
+  m_AudioClip: {fileID: 8300000, guid: ade6f89d5f974244a9da3efbd2bcaa94, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-8173229160310050608
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jibberish-05_{-8173229160310050608}
+  m_AudioClip: {fileID: 8300000, guid: 86bc70ffd05f61c45839a9c4f5a6c76e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-7025701017766141654
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jibberish-03_{-7025701017766141654}
+  m_AudioClip: {fileID: 8300000, guid: 147c7a87e4e561a43969ad64b1f009c7, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1498769514291445983
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jibberish-07_{-1498769514291445983}
+  m_AudioClip: {fileID: 8300000, guid: dd8a3f17029e1dc4286d83a4dc01ecb6, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &803377123652961892
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jibberish-06_{803377123652961892}
+  m_AudioClip: {fileID: 8300000, guid: 7a74138752d07c444b4e1c77a20ddfe2, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2486452429460561730
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jibberish-04_{2486452429460561730}
+  m_AudioClip: {fileID: 8300000, guid: 6b40415f4a2ca9d448dc0fb79429d142, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jibberish
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: -10, y: 10}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -8262419963563505134}
+  - {fileID: 6987785232745836182}
+  - {fileID: -7025701017766141654}
+  - {fileID: 2486452429460561730}
+  - {fileID: -8173229160310050608}
+  - {fileID: 803377123652961892}
+  - {fileID: -1498769514291445983}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 1
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &6987785232745836182
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jibberish-02_{6987785232745836182}
+  m_AudioClip: {fileID: 8300000, guid: 8831e09b218416e4a9ab3c0203019c20, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

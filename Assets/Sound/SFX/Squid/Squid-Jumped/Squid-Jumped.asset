@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-8347004595896394836
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped-03_{-8347004595896394836}
+  m_AudioClip: {fileID: 8300000, guid: 1f6bd17e6fa6c1945bdc946b51809a60, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2609768153597019791
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped-01_{-2609768153597019791}
+  m_AudioClip: {fileID: 8300000, guid: afae0a1eff54e864ea6f0a30696ed998, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2483703378801720926
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped-04_{-2483703378801720926}
+  m_AudioClip: {fileID: 8300000, guid: d05c191b3631fdb4caacba43c5cbee08, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: -10, y: 10}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -2609768153597019791}
+  - {fileID: 8623293771227200900}
+  - {fileID: -8347004595896394836}
+  - {fileID: -2483703378801720926}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 1
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &8623293771227200900
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Squid-Jumped-02_{8623293771227200900}
+  m_AudioClip: {fileID: 8300000, guid: 9493510a37678c74589870aba5c03363, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

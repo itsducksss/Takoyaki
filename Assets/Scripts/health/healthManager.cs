@@ -18,6 +18,8 @@ public class HealthManager : MonoBehaviour
 
     public TMP_Text healthText;
 
+    public GameObject alertIndicator;
+
     void Awake()
     {
         hitColliders = new Collider[maxColliders];
@@ -53,10 +55,10 @@ public class HealthManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(5);  //will prob not need this
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    TakeDamage(5);  //will prob not need this
+        //}
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
