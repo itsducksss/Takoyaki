@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -100,6 +101,8 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] public AudioSource audioAlerted;
     [SerializeField] public AudioSource audioAttatched, audioDettached, audioJump, audioJibberish, audioLanded;
 
+    public ParticleSystem waterTrail;
+
 
     private InputAction moveAction;
     private InputAction attatchAction;
@@ -123,6 +126,8 @@ public class PlayerStateMachine : MonoBehaviour
         // Give the player states the reference to this State Machine
         MovementState.sm = this;
         AttatchedState.sm = this;
+        waterTrail.Pause();
+
 
         // Lock the cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -136,6 +141,7 @@ public class PlayerStateMachine : MonoBehaviour
     public void OnMove(InputAction context)
     {
         MoveDirection = context.ReadValue<Vector2>();
+        waterTrail.Play(); 
         currentState?.OnMove(context);
     }
 
@@ -212,8 +218,8 @@ public class PlayerStateMachine : MonoBehaviour
         OnJump(jumpAction);
         OnLockOn(lockOnAction);
         OnInteract(interactAction);
-
-
+        //CreateWaterTrail();
+            
         currentState?.OnUpdate();
     }
 
@@ -289,5 +295,10 @@ public class PlayerStateMachine : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, interactDistance);
+    }
+
+    private void CreateWaterTrail()
+    {
+        waterTrail.Play();
     }
 }
