@@ -21,22 +21,6 @@ public class SecurityCamera : MonoBehaviour
     private void FixedUpdate()
     {
         DetectTarget();
-
-
-        if (_hasDetected)
-        {
-            OverlayEffectManager.Instance.EnableEffect();
-            cameraLight.color = Color.red;
-            _healthManager.multiplier = 20f;
-            _healthManager.alertIndicator.SetActive(true);
-        }
-        else
-        {
-            OverlayEffectManager.Instance.DisableEffect();
-            cameraLight.color = Color.green;
-            _healthManager.multiplier = 1f;
-            _healthManager.alertIndicator.SetActive(false);
-        }
     }
 
     private void DetectTarget()
@@ -46,10 +30,18 @@ public class SecurityCamera : MonoBehaviour
         {
             _hasDetected = true;
             Debug.Log($"Detected => {col[0].gameObject.name}");
+            OverlayEffectManager.Instance.EnableEffect();
+            cameraLight.color = Color.red;
+            _healthManager.multiplier = 20f;
+            _healthManager.alertIndicator.SetActive(true);
         }
-        else
+        else if (_hasDetected)
         {
             _hasDetected = false;
+            OverlayEffectManager.Instance.DisableEffect();
+            cameraLight.color = Color.green;
+            _healthManager.multiplier = 1f;
+            _healthManager.alertIndicator.SetActive(false);
         }
 
     }

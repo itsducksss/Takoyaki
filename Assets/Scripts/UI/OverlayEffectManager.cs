@@ -48,6 +48,11 @@ public class OverlayEffectManager : MonoBehaviour
         print("Disabled");
     }
 
+    public void OnDestroy()
+    {
+        Debug.Log("ARGH!");
+    }
+
     private void Update()
     {
         //DetectInput();
