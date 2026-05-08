@@ -73,6 +73,7 @@ public class OverlayEffectManager : MonoBehaviour
     private void UpdateEffect()
     {
         _material.SetFloat(_materialParam, _smooth);
+        Debug.Log($"Smooth {_material.GetFloat(_materialParam)}");
     }
 
     public void ResetEffect()

@@ -3,7 +3,12 @@ guid: 2299e497e73b70a4e829490977049709
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Garden_Eel_Spotted
+    second: {fileID: 2100000, guid: e7ec8a3923f52e040bf29fbb2fd68c61, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

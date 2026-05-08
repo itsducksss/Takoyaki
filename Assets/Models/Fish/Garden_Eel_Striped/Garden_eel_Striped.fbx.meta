@@ -3,7 +3,12 @@ guid: ef81e1c959b63324a989f9bfcd1e3c47
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Garden_Eel_Striped
+    second: {fileID: 2100000, guid: 16b5d88e881b1f248946191e12c0865e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

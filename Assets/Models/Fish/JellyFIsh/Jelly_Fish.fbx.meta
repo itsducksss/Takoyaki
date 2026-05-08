@@ -3,7 +3,22 @@ guid: d5617b3ab111ad6428e1603936ace542
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface21
+    second: {fileID: 2100000, guid: bb131909817a7c141a4cf4cd138acf31, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Jelly_Fish_standardSurface1_BaseColor
+    second: {fileID: 2800000, guid: aaba129568c81e942808ec6fc9260a96, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Opacity
+    second: {fileID: 2800000, guid: 4e00bde5f06230c40a3651e79e4c49bc, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

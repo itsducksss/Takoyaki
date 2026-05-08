@@ -12,6 +12,7 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] bool _hasDetected;
 
     private HealthManager _healthManager;
+    //sprivate OverlayEffectManager _overlayEffectManager;
 
     private void Awake()
     {

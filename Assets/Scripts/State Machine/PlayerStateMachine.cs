@@ -127,6 +127,7 @@ public class PlayerStateMachine : MonoBehaviour
         MovementState.sm = this;
         AttatchedState.sm = this;
         waterTrail.Pause();
+        audioAlerted.Pause();
 
 
         // Lock the cursor
@@ -282,7 +283,11 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void OnDetected()
     {
-        if (!audioAlerted.isPlaying) audioAlerted.Play();
+        if (!audioAlerted.isPlaying)
+        {
+            Debug.Log("Play alert");
+            audioAlerted.Play();
+        }
     }
 
     private void OnDrawGizmos()
