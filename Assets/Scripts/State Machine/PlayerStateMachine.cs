@@ -83,6 +83,8 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] CinemachineFreeLook _followCamera;
     /// <summary> The Free Look camera following the player (is also used for look input) </summary>
     public CinemachineFreeLook FollowCamera { get { return _followCamera; } }
+
+    [SerializeField] Transform spine;
     public Vector3 CameraLookDirection
     {
         get
@@ -243,7 +245,7 @@ public class PlayerStateMachine : MonoBehaviour
     bool GroundCheck()
     {
 
-        bool hit = Physics.BoxCast(transform.position, _groundCheckSize * 0.5f, Vector3.down, 
+        bool hit = Physics.BoxCast(Rb.transform.position, _groundCheckSize * 0.5f, Vector3.down, 
             out RaycastHit rayHit, Quaternion.identity, _groundCheckDistance, _groundMask);
 
         if (hit)
