@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: f09dad2e797e24c44ba7eef8f2a11b68
+guid: 57e9784ea98d88843b3170024567855e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cooler_Bottom1
-    second: {fileID: 2100000, guid: 0e5bbeec527c89340bda448c11afd235, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -38,7 +33,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 2.2
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -93,7 +88,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 2.2
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
