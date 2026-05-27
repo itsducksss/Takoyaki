@@ -5188,7 +5188,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!135 &6498519062408661986
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7673,7 +7673,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &7903002253976424120
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7774,7 +7774,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &6736770923521924581
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7954,7 +7954,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &771110966984613638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7607722699587004229, guid: 431e1daa344a0784cb77b80ae544e1e0, type: 3}
@@ -8110,7 +8110,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 32
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &786519787179415811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7623962767819317568, guid: 431e1daa344a0784cb77b80ae544e1e0, type: 3}
@@ -8162,7 +8162,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &6231713628327023124
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8263,7 +8263,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &6697324317671516346
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -8364,7 +8364,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &5516988784499572480
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8470,7 +8470,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &8394907911933146231
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -8645,7 +8645,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &1731529633277671257 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8872134340727426842, guid: 431e1daa344a0784cb77b80ae544e1e0, type: 3}
@@ -8682,7 +8682,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &7164490934512902200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8783,7 +8783,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &6950633832740391457
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -8907,7 +8907,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &8382515545911083234
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -9005,7 +9005,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &3827179328018656443
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9116,7 +9116,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &1228652257392118489
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9217,7 +9217,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &3053203647889911937
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -9387,7 +9387,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &3799033263456374405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2909493903038318906, guid: 431e1daa344a0784cb77b80ae544e1e0, type: 3}
@@ -9419,7 +9419,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &8978421683149459400
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9594,7 +9594,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &4084152027621063279 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6596177562228146732, guid: 431e1daa344a0784cb77b80ae544e1e0, type: 3}
@@ -9626,7 +9626,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &6147964438906086468
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -9727,7 +9727,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &2023247067291393742
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9828,7 +9828,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &6284821850752597501
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10012,7 +10012,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &1684804917014250364
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -10118,7 +10118,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &3777361187992056151
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10224,7 +10224,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &2062184754258313905
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -10335,7 +10335,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &8647816547842262634
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10436,7 +10436,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &8551355890370343488
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -10537,7 +10537,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &5567881675824827218
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10663,7 +10663,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &2481489836346102545
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10764,7 +10764,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &8468083043442032483
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10934,7 +10934,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &8057044957582879120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8288917336738639405, guid: 431e1daa344a0784cb77b80ae544e1e0, type: 3}
@@ -10991,7 +10991,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &3338622066381993692
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -11097,7 +11097,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &2188336044109949665
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11267,4 +11267,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
